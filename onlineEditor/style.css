@@ -1,0 +1,118 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Consolas;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+#workspace {
+    display: flex;
+    height: 500px;
+    margin: 0px 10px 0px 10px;
+}
+
+/* Editor */
+#editor {
+    border-radius: 8px;
+    flex: 2;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#editorTop {
+    color: white;
+    padding: 10px;
+    background-color: #3b3b3b;
+}
+
+#editorTop h3 {
+    display: inline-block;
+}
+
+.CodeMirror {
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+/* Console */
+#console {
+    margin: 5px;
+    border-radius: 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#consoleTop {
+    background-color: #3b3b3b;
+    padding: 10px;
+    color: white;
+}
+
+#consoleTop h3{
+    display: inline-block;
+}
+
+#consoleOutput {
+    background-color: #2b2b2b;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+/* Buttons */
+.btn{
+    font-size: 16px;
+    width: 100px;
+    height: 35px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#runbtn, #testbtn {
+    background-color: rgb(102, 255, 102);
+}
+
+#testbtn {
+    background-color: rgb(240, 240, 93);
+}
+
+.btn:hover, .btnSmall:hover {
+    filter: brightness(125%)
+}
+
+.btnSmall {
+    width: 50px;
+    height: 25px;
+    margin-left: 5px;
+    border-radius: 5px;
+    float: right;
+    color: white;
+    background-color: #2b2b2b;
+}
+
+/* Hints */
+#hints {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+#hints ul {
+    margin-left: 20px;
+    font-size: 20px;
+}

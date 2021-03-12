@@ -1,0 +1,16 @@
+{
+  "modules": {
+    "helpers": {
+      "file": "helpers.py", 
+      "imports": [
+        "itertools", 
+        "math.atan2", 
+        "math.cos", 
+        "math.pi", 
+        "math.sin", 
+        "math.sqrt"
+      ]
+    }
+  }, 
+  "preload": {}
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Editor</title>
+        <script type="module" src="code.js"></script>
+        <script src="codemirror/lib/codemirror.js"></script>
+        <script src="codemirror/mode/python/python.js"></script>
+        <script src="codemirror/addon/edit/closebrackets.js"></script>
+        <script src="codemirror/addon/edit/matchbrackets.js"></script>
+        <link href="codemirror/lib/codemirror.css" rel="stylesheet"/>
+        <link href="codemirror/theme/darcula.css" rel="stylesheet"/>
+        <script src="pypyjs-0.4.0/lib/Promise.min.js" type="text/javascript"></script>
+        <script src="pypyjs-0.4.0/lib/FunctionPromise.js" type="text/javascript"></script>
+        <script src="pypyjs-0.4.0/lib/pypyjs.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Assignment 5 (Inclusion-Exclusion)</h1>
+        <div id="workspace">
+            <div id="editor">
+                <div id="editorTop">
+                    <h3>Editor</h3>
+                    <input id="loadInput" type="file" hidden="hidden"/>
+                    <button class="btnSmall" id="loadbtn">Load</button>
+                    <button class="btnSmall" id="savebtn">Save</button>
+                </div>
+                <textarea id="textArea">
+                </textarea>
+            </div>
+    
+            <div id="console">
+                <div id="consoleTop">
+                    <h3>Console</h3>
+                    <button class="btnSmall" id="clearbtn">Clear</button>
+                </div>
+                <div id="consoleOutput"></div>
+            </div>
+        </div>
+
+        <button id="runbtn" class="btn">Run</button>
+        <button id="testbtn" class="btn">Test</button>
+        <a id="download" href="download.txt" download hidden="hidden"></a>
+
+        <div id="hints">
+            <h2>Hints:</h2>
+            <ul>
+                <li>Use subsets(G.vertices()) for all vertex subsets of G</li>
+                <li>G.minusVertices([u, v, w]) returns a copy of G with u,v,w removed</li>
+            </ul>
+        </div>
+    </body>
+</html>
