@@ -1,5 +1,5 @@
 from graph import Graph
-import fileinput
+from tests6 import test_vc
 
 #TODO find compatible SAT-solver
 def cnf_experiment():
@@ -13,19 +13,9 @@ def vc_fpt(g, k):
     return vc_fpt(g.minus_vertices([e.u]), k-1)\
            or vc_fpt(g.minus_vertices([e.v]), k-1)
 
-def min_vc(g: Graph):
+def min_vc(g):
     n = g.vertex_count()
     return next(k for k in range(n+1) if vc_fpt(g, k))
 
-#TODO move to testing file
-g = Graph()
-for line in fileinput.input():
-    e = line.split(" ")
-    u = int(e[0])
-    v = int(e[1])
-
-    if not g.has_vertex(u): g.add_vertex(u)
-    if not g.has_vertex(v): g.add_vertex(v)
-    g.add_edge(u,v)
-
-print(min_vc(g))
+#Testing
+test_vc(vc_fpt)

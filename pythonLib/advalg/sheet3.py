@@ -1,6 +1,7 @@
-from dnf import DNF
 from random import random
 from itertools import accumulate
+from dnf import DNF
+from tests3 import test_dnf
 
 def approx_count(dnf, samples):
     clause_sat = [2 ** (dnf.var_count() - len(c)) for c in dnf.clauses()]
@@ -38,36 +39,5 @@ def sample_assignment(dnf, clause_idx):
 
     return assignment
 
-# This is only for testing
-def brute_count(dnf):
-    assignments = [[]]
-
-    for i in range(dnf.var_count()):
-        new = []
-        for a in assignments:
-            new.append(a + [False])
-            new.append(a + [True])
-        assignments = new
-
-    count = 0
-    for a in assignments:
-        asn = {(i+1):a[i] for i in range(len(a))}
-        if dnf.is_satisfied(asn):
-            count += 1
-
-    return count
-
-#TODO move tests to test file
-# 28 satisfying assignments
-dnf = DNF(5)
-dnf.add_clause([1,2])
-dnf.add_clause([-2,3])
-dnf.add_clause([-1])
-print(approx_count(dnf, 100000))
-
-# 704 satisfying assignments
-dnf2 = DNF(10)
-dnf2.add_clause([1,2,5,-10])
-dnf2.add_clause([-2,3])
-dnf2.add_clause([-1])
-print(approx_count(dnf2, 100000))
+#Testing
+test_dnf(approx_count)

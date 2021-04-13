@@ -1,7 +1,7 @@
-from helpers import subsets
 from collections import deque
+from helpers import subsets
 from graph import Graph
-from math import inf
+from tests8 import test_max_iset, test_count_iset
 
 def grid_graph(rows, cols):
     g = Graph(rows * cols)
@@ -14,13 +14,14 @@ def grid_graph(rows, cols):
 
     return g
 
+# Assume rows >= cols
 def grid_decomp(rows,cols):
     decomp = [{"type": "leaf", 'bag': []}]
     bag = deque()
 
     for r in range(rows):
         for c in range(cols):
-            if len(bag) > rows:
+            if len(bag) > cols:
                 v = bag.popleft()
                 decomp.append({'type': 'forget', 'bag': list(bag), 'v': v})
             v = r * cols + c
@@ -42,7 +43,7 @@ def max_indepset(rows, cols):
                 if node['v'] not in s:
                     table[t][s] = table[t-1][s]
                 elif any([graph.edge_exists(u,node["v"]) for u in s]):
-                    table[t][s] = -inf
+                    table[t][s] = -float('inf')
                 else:
                     table[t][s] = table[t-1][s-{node["v"]}] + 1
             elif node['type'] == 'forget':
@@ -72,3 +73,7 @@ def count_indepset(rows, cols):
                 table[t][s] = table[t-1][s] + table[t-1][s.union({v})]
         
     return sum(table[-1].values())
+
+#Testing
+test_max_iset(max_indepset)
+test_count_iset(count_indepset)

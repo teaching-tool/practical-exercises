@@ -1,3 +1,5 @@
+#Probably not needed. Use numpy
+
 class Matrix:
     def __init__(self, rows, cols):
         assert(rows >= 0 and cols >= 0)

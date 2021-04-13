@@ -2,7 +2,7 @@ from math import inf
 from helpers import haversine, combinations, subsets
 from graph import Graph
 import prim
-import fileinput
+from tests4 import test_tsp_dp, test_tsp_approx, test_vc_approx
 
 def tsp_dp(start, g):
     vts = frozenset(g.vertices())
@@ -42,42 +42,20 @@ def tsp_approx(start, g):
     return tour + [start]
 
 def vc_approx(g):
-    edges = []
-    in_matching = {v:False for v in g.vertices()}
+    vc = set()
 
     for e in g.edges():
-        if in_matching[e.u] or in_matching[e.v]: continue
-        in_matching[e.u] = in_matching[e.v] = True
-        edges.append(e)
+        if e.u in vc or e.v in vc: continue
+        vc.update([e.u, e.v])
     
-    return edges
+    return vc
 
 # TODO find compatible lp solver
 def vc_lp(g):
     pass
 
-#TODO move testing to test file
-def tour_cost(g, tour):
-    return sum([g.edge_weight(tour[i], tour[i+1]) for i in range(len(tour)-1)])
-
-names = []
-positions = []
-
-for line in fileinput.input():
-    name,pos = line.split(",")
-    lat,lon = pos.split("/")
-    names.append(name)
-    positions.append((float(lat), float(lon)))
-
-g = Graph(len(names))
-
-for u in range(len(names)):
-    (lat1,lon1) = positions[u]
-    for v in range(u+1, len(names)):
-        (lat2,lon2) = positions[v]
-        g.add_edge(u,v,haversine(lat1, lon1, lat2, lon2))
-
-tour = tsp_dp(0, g)
-tour2 = tsp_approx(0, g)
-print(tour_cost(g, tour) / 1000)
-print(tour_cost(g, tour2) / 1000)
+#Test
+test_tsp_dp(tsp_dp)
+test_tsp_approx(tsp_approx)
+test_vc_approx(vc_approx)
+#test_vc_approx(vc_lp) Not done
