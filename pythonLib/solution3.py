@@ -1,7 +1,7 @@
 from random import random
 from itertools import accumulate
-from dnf import DNF
-from tests3 import test_dnf
+from advalg.dnf import DNF
+from advalg.tests3 import test_dnf
 
 def approx_count(dnf, samples):
     clause_sat = [2 ** (dnf.var_count() - len(c)) for c in dnf.clauses()]

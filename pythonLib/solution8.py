@@ -1,7 +1,7 @@
 from collections import deque
-from helpers import subsets
-from graph import Graph
-from tests8 import test_max_iset, test_count_iset
+from advalg.helpers import subsets
+from advalg.graph import Graph
+from advalg.tests8 import test_max_iset, test_count_iset
 
 def grid_graph(rows, cols):
     g = Graph(rows * cols)

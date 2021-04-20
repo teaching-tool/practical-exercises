@@ -1,5 +1,5 @@
-from graph import Graph
-from tests6 import test_vc
+from advalg.graph import Graph
+from advalg.tests6 import test_vc
 
 #TODO find compatible SAT-solver
 def cnf_experiment():

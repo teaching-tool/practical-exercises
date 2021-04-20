@@ -1,5 +1,5 @@
 import fileinput
-from graph import Graph
+from advalg.graph import Graph
 
 # TODO load this from file
 edges = [
@@ -98,6 +98,7 @@ for u,v in edges:
     g.add_edge(u,v)
 
 def test_vc(vc_fpt):
+    """Tests the implementation of the FPT algorithm for vertex cover"""
     n = g.vertex_count()
     actual = next(k for k in range(n+1) if vc_fpt(g, k))
     if actual != 12:

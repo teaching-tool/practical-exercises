@@ -1,5 +1,5 @@
-from helpers import subsets, choose
-from tests5 import test_matchings, test_ham_cycles
+from advalg.helpers import subsets, choose
+from advalg.tests5 import test_matchings, test_ham_cycles
 
 def perfect_matchings(graph):
     if graph.vertex_count() % 2 != 0: 

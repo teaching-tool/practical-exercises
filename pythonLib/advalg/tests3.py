@@ -1,4 +1,4 @@
-from dnf import DNF
+from advalg.dnf import DNF
 
 # 1 assignment not good test
 dnf1 = DNF(3)
@@ -37,6 +37,9 @@ tests = [
 samples = [10, 100, 1000]
 
 def test_dnf(counter):
+    """
+    Tests the given counter function on several DNF formulas.
+    """
     for (dnf, count) in tests:
         print(dnf)
         print(f"actual #sat = {count}")
@@ -46,6 +49,10 @@ def test_dnf(counter):
 
 # This is only for testing
 def brute_count(dnf):
+    """
+    Uses brute force to count number of satisfying assignments in the given dnf.
+    Will be moved to some kind of brute force module.
+    """
     assignments = [[]]
 
     for i in range(dnf.var_count()):

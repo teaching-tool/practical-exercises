@@ -1,7 +1,11 @@
 import heapq
-from graph import Graph
+from advalg.graph import Graph
 
 def mst(graph: Graph) -> Graph:
+    """
+    Computes a minimum spanning tree of the given graph using Prim's algorithm.
+    The MST is returned as a graph g.
+    """
     start_vtx = next(graph.vertices())
     tree = Graph()
     tree.add_vertex(start_vtx)

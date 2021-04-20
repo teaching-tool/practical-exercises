@@ -1,9 +1,15 @@
-from graph import Graph
-from helpers import haversine, subsets, permutations
 from math import inf
-from map_visualizer import plot_tour
+from advalg.graph import Graph
+from advalg.helpers import haversine, subsets, permutations
+from advalg.map_visualizer import plot_tour
 
 def cities_denmark():
+    """
+    Constructs a complete graph with vertices corresponding to Danish cities.
+    An edge between two cities is weighted by the great-circle distance between them.
+    Returns the graph and the city names as a pair.
+    Vertex v corresponds to city at index v.
+    """
     names = []
     positions = []
 
@@ -26,9 +32,17 @@ def cities_denmark():
 
 # Helper functions
 def is_vc(g, vc):
+    """
+    Is vc a vertex cover of the graph g?
+    This might be moved to a different module.
+    """
     return all([e.u in vc or e.v in vc for e in g.edges()])
 
 def is_hamcycle(g, tour):
+    """
+    Is the given tour a hamiltonian cycle in g?
+    This might be moved to a different module.
+    """
     unique = len(set(tour)) == len(tour) - 1
     all_visited = all([v in tour for v in g.vertices()])
     is_cycle = tour[0] == tour[-1]
@@ -36,12 +50,25 @@ def is_hamcycle(g, tour):
     return unique and all_visited and is_cycle and legal_edges
 
 def tour_cost(g, tour):
+    """
+    Returns the total cost of the given tour in g.
+    This might be moved to a different module.
+    """
     return sum([g.edge_weight(tour[i], tour[i+1]) for i in range(len(tour)-1)])
 
 def brute_vc(g):
+    """
+    Computes the size of the minimum vertex cover of g using brute force.
+    This might be moved to a different module.
+    """
     return min([len(sub) for sub in subsets(g.vertices()) if is_vc(g,sub)])
 
 def brute_hamcycle(g):
+    """
+    Computes the weight of the cheapest hamiltonian cycle in g.
+    Returns inf if no hamiltonian cycle exists.
+    This might be moved to a different module.
+    """
     tours = [p + (p[0],) for p in permutations(g.vertices(), g.vertex_count())]
     ham_cycles = [t for t in tours if is_hamcycle(g,t)]
     if len(ham_cycles) == 0: return inf
@@ -49,10 +76,11 @@ def brute_hamcycle(g):
 
 #Testing
 
-g,names = cities_denmark()
-cost = 964225.4
 
 def test_tsp_dp(tsp_dp):
+    """Tests the implementation of the DP for TSP"""
+    g,names = cities_denmark()
+    cost = 964225.4
     tour = tsp_dp(0,g)
     cities = [names[i] for i in tour]
     if not is_hamcycle(g,tour):
@@ -63,6 +91,9 @@ def test_tsp_dp(tsp_dp):
         plot_tour(cities, "TSP-DP\nTest passed!: Ham-cycle is optimal")
 
 def test_tsp_approx(tsp_approx):
+    """Tests the implementation of the 2-approximation for TSP"""
+    g,names = cities_denmark()
+    cost = 964225.4
     tour = tsp_approx(0,g)
     cities = [names[i] for i in tour]
     if not is_hamcycle(g,tour):
@@ -73,6 +104,7 @@ def test_tsp_approx(tsp_approx):
         plot_tour(cities, "TSP-DP\nTest passed!: Ham-cycle is a 2-approximation")
 
 def test_vc_approx(vc_approx):
+    """Tests the implementation of the 2-approximation for vertex cover"""
     for g,vc_size in []: # Make tests
         vc = set(vc_approx(g))
         if not is_vc(vc):

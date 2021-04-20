@@ -3,6 +3,7 @@ from typing import Iterable, Iterator, Tuple
 import itertools
 
 def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Returns the great-circle distance between points (lat1, lon1) and (lat2, lon2)"""
     R = 6371000
     phi1 = lat1 * pi/180
     phi2 = lat2 * pi/180
@@ -15,20 +16,24 @@ def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return R * c
 
 def combinations(items: Iterable, count: int) -> Iterator[Tuple]:
+    """Returns all count-combinations of items as an iterator of tuples"""
     l = list(items)
     assert(0 <= count <= len(l))
     return itertools.combinations(l, count)
 
 def permutations(items: Iterable, count: int) -> Iterator[Tuple]:
+    """Returns all count-permutations of items as an iterator of tuples"""
     l = list(items)
     assert(0 <= count <= len(l))
     return itertools.permutations(l, count)
 
 def subsets(items: Iterable) -> Iterator[Tuple]:
+    """Returns all subsets of items as an iterator of tuples"""
     l = list(items)
     return itertools.chain.from_iterable(combinations(l, c) for c in range(len(l)+1))
 
 def choose(n: int, k: int) -> int:
+    """Returns the binomial coefficient n choose k"""
     if (k == 0): return 1
     return (n * choose(n-1, k-1)) // k
 

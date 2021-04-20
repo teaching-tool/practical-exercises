@@ -1,5 +1,5 @@
-from graph import Graph
-from helpers import subsets
+from advalg.graph import Graph
+from advalg.helpers import subsets
 
 max_tests = [
     (4,4,8),
@@ -16,6 +16,7 @@ count_tests = [
 ]
 
 def test_max_iset(max_iset):
+    """Tests the implementation of the DP for maximum independent set"""
     for r,c,m in max_tests:
         actual = max_iset(r,c)
         if actual != m: 
@@ -25,6 +26,7 @@ def test_max_iset(max_iset):
 
 
 def test_count_iset(count_iset):
+    """Tests the implementation of the DP for counting independent sets"""
     for r,c,n in count_tests:
         actual = count_iset(r,c)
         if actual != n: 
@@ -33,13 +35,21 @@ def test_count_iset(count_iset):
             print(f"Count isets {r}x{c} test passed!")
 
 def is_iset(g, s):
+    """
+    Is s an independent set of graph g?
+    This might be moved to a different module"""
     return not any([e.u in s and e.v in s for e in g.edges()])
 
 def brute_isets(g):
+    """
+    Uses brute force to construct all independent sets of g.
+    Might be moved to a different module.
+    """
     return [s for s in subsets(g.vertices()) if is_iset(g,s)]
 
 #also in sheet8
 def grid_graph(rows, cols):
+    """Constructs a grid graph with the given rows and columns"""
     g = Graph(rows * cols)
     
     for r in range(rows):

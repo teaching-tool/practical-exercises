@@ -21,6 +21,10 @@ pos = {
 }
 
 def plot_tour(tour, title):
+    """
+    Visualizes the given tour of danish cities on a map.
+    The given title is shown on top of the map.
+    """
     xs = [pos[city][0] for city in tour]
     ys = [pos[city][1] for city in tour]
 

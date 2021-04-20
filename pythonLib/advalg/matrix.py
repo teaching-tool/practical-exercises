@@ -1,6 +1,8 @@
-#Probably not needed. Use numpy
-
 class Matrix:
+    """
+    This class represents a matrix.
+    (Will either be replaced or reimplemented using numpy because it is faster)
+    """
     def __init__(self, rows, cols):
         assert(rows >= 0 and cols >= 0)
         self._rows = rows
