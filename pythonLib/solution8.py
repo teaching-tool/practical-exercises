@@ -1,18 +1,8 @@
 from collections import deque
 from advalg.helpers import subsets
 from advalg.graph import Graph
+from advalg.graph_helpers import make_grid
 from advalg.tests8 import test_max_iset, test_count_iset
-
-def grid_graph(rows, cols):
-    g = Graph(rows * cols)
-    
-    for r in range(rows):
-        for c in range(cols):
-            v = r * cols + c
-            if c > 0: g.add_edge(v, v-1)
-            if r > 0: g.add_edge(v, v-cols)
-
-    return g
 
 # Assume rows >= cols
 def grid_decomp(rows,cols):
@@ -31,7 +21,7 @@ def grid_decomp(rows,cols):
     return decomp
 
 def max_indepset(rows, cols):
-    graph = grid_graph(rows,cols)
+    graph = make_grid(rows,cols)
     decomp = grid_decomp(rows,cols)
     table = [{} for t in range(len(decomp))]
 
@@ -53,7 +43,7 @@ def max_indepset(rows, cols):
     return max(table[-1].values())
 
 def count_indepset(rows, cols):
-    graph = grid_graph(rows,cols)
+    graph = make_grid(rows,cols)
     decomp = grid_decomp(rows,cols)
     table = [{} for t in range(len(decomp))]
 

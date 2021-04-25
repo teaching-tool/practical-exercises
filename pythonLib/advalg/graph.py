@@ -165,3 +165,13 @@ class Graph:
         for (u,v,w) in self.edges(): _copy.add_edge(u,v,w)
 
         return _copy
+
+    def __repr__(self) -> str:
+        n = self.vertex_count()
+        m = self.edge_count()
+        rep = f"Graph object: {n} vertices, {m} edges"
+
+        for e in self.edges():
+            rep += f"\n{e.u} <--> {e.v} (weight: {e.w})"
+
+        return rep

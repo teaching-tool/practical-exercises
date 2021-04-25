@@ -2,6 +2,7 @@ from math import inf
 from advalg.graph import Graph
 from advalg.helpers import haversine, subsets, permutations
 from advalg.map_visualizer import plot_tour
+from advalg.brute_force import is_hamcycle, is_vc
 
 def cities_denmark():
     """
@@ -31,51 +32,12 @@ def cities_denmark():
     return g,names
 
 # Helper functions
-def is_vc(g, vc):
-    """
-    Is vc a vertex cover of the graph g?
-    This might be moved to a different module.
-    """
-    return all([e.u in vc or e.v in vc for e in g.edges()])
-
-def is_hamcycle(g, tour):
-    """
-    Is the given tour a hamiltonian cycle in g?
-    This might be moved to a different module.
-    """
-    unique = len(set(tour)) == len(tour) - 1
-    all_visited = all([v in tour for v in g.vertices()])
-    is_cycle = tour[0] == tour[-1]
-    legal_edges = all([g.edge_exists(tour[i], tour[i+1]) for i in range(len(tour)-1)])
-    return unique and all_visited and is_cycle and legal_edges
 
 def tour_cost(g, tour):
-    """
-    Returns the total cost of the given tour in g.
-    This might be moved to a different module.
-    """
+    """ Returns the total cost of the given tour in g. """
     return sum([g.edge_weight(tour[i], tour[i+1]) for i in range(len(tour)-1)])
 
-def brute_vc(g):
-    """
-    Computes the size of the minimum vertex cover of g using brute force.
-    This might be moved to a different module.
-    """
-    return min([len(sub) for sub in subsets(g.vertices()) if is_vc(g,sub)])
-
-def brute_hamcycle(g):
-    """
-    Computes the weight of the cheapest hamiltonian cycle in g.
-    Returns inf if no hamiltonian cycle exists.
-    This might be moved to a different module.
-    """
-    tours = [p + (p[0],) for p in permutations(g.vertices(), g.vertex_count())]
-    ham_cycles = [t for t in tours if is_hamcycle(g,t)]
-    if len(ham_cycles) == 0: return inf
-    return min([tour_cost(g, t) for t in ham_cycles])
-
 #Testing
-
 
 def test_tsp_dp(tsp_dp):
     """Tests the implementation of the DP for TSP"""
