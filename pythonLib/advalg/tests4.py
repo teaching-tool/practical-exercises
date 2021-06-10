@@ -1,8 +1,7 @@
-from math import inf
 from advalg.graph import Graph
-from advalg.helpers import haversine, subsets, permutations
+from advalg.helpers import haversine
 from advalg.map_visualizer import plot_tour
-from advalg.brute_force import is_hamcycle, is_vc
+from advalg.graph_helpers import is_hamcycle, is_vc
 
 def cities_denmark():
     """
@@ -39,31 +38,32 @@ def tour_cost(g, tour):
 
 #Testing
 
+g, names = cities_denmark()
+cost = 964225.4
+
 def test_tsp_dp(tsp_dp):
     """Tests the implementation of the DP for TSP"""
-    g,names = cities_denmark()
-    cost = 964225.4
     tour = tsp_dp(0,g)
     cities = [names[i] for i in tour]
     if not is_hamcycle(g,tour):
-        plot_tour(cities, "TSP-DP\nTest failed: Not a ham-cycle")
+        print("TSP-DP test failed: Not a ham-cycle")
     elif abs(tour_cost(g,tour) - cost) > 0.1:
-        plot_tour(cities, "TSP-DP\nTest failed: Ham-cycle not optimal")
+        print("TSP-DP test failed: Tour is not optimal")
     else:
-        plot_tour(cities, "TSP-DP\nTest passed!: Ham-cycle is optimal")
+        print("TSP-DP test passed! Tour is optimal")
+    plot_tour(cities, "TSP-DP")
 
 def test_tsp_approx(tsp_approx):
     """Tests the implementation of the 2-approximation for TSP"""
-    g,names = cities_denmark()
-    cost = 964225.4
     tour = tsp_approx(0,g)
     cities = [names[i] for i in tour]
     if not is_hamcycle(g,tour):
-        plot_tour(cities, "TSP-DP\nTest failed: Not a ham-cycle")
+        print("TSP-Approx test failed: Not a ham-cycle")
     elif (tour_cost(g,tour)/cost) > 2:
-        plot_tour(cities, "TSP-DP\nTest failed: cost(ham-cycle) > 2 * cost(optimal ham-cycle)")
+        print("TSP-Approx test failed: cost(tour) > 2 * cost(optimal tour")
     else:
-        plot_tour(cities, "TSP-DP\nTest passed!: Ham-cycle is a 2-approximation")
+        print("TSP-Approx test passed! Tour is a 2-approximation")
+    plot_tour(cities, "TSP-Approx")
 
 def test_vc_approx(vc_approx):
     """Tests the implementation of the 2-approximation for vertex cover"""
@@ -75,5 +75,3 @@ def test_vc_approx(vc_approx):
             print("Test failed: |vc| > 2 * |optimal vc|")
         else:
             print("Test passed!")
-
-# Come up with example graphs (metric?)

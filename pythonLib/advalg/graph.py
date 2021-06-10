@@ -92,7 +92,7 @@ class Graph:
         self._adj[v] = set()
         self._vertex_count += 1
 
-    def add_edge(self, u: int, v: int, weight: float = 1) -> bool:
+    def add_edge(self, u: int, v: int, weight: float = 1) -> None:
         """Add an edge between vertices u and v with the given weight (1 by default)"""
         assert(self.has_vertex(u) and self.has_vertex(v))
         assert(not self.edge_exists(u,v))

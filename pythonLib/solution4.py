@@ -3,6 +3,8 @@ from advalg.helpers import haversine, combinations, subsets
 from advalg.graph import Graph
 import advalg.prim as prim
 from advalg.tests4 import test_tsp_dp, test_tsp_approx, test_vc_approx
+from advalg.lp import *
+from itertools import accumulate
 
 def tsp_dp(start, g):
     vts = frozenset(g.vertices())
@@ -51,8 +53,22 @@ def vc_approx(g):
     return vc
 
 # TODO find compatible lp solver
+# Minimum weight vertex cover
 def vc_lp(g):
-    pass
+
+    x = [Var(v) for v in g.vertices()]
+    obj = Minimize(([1*var for var in x]))
+
+    lp = LP(g.vertex_count, obj)
+    # One variable pr. vertex (0 or 1) is v in the vertex cover?
+    # Minimize xv * wv (vertex weight)
+    # Contraints for each edge u,v xu + xv >= 1
+    
+    for e in g.edges():
+        lp.add_constraint(x[e.u] + x[e.v] >= 1)
+
+    print(lp.solve())
+
 
 #Test
 test_tsp_dp(tsp_dp)

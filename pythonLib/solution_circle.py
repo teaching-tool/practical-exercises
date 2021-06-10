@@ -1,10 +1,5 @@
 from random import random, uniform
-from itertools import accumulate
 from advalg.circles import Circle, CircleAnimation
-
-#Testing
-import numpy as np
-import matplotlib.pyplot as plt
 
 class CircleSampler:
     def __init__(self, circles):
@@ -51,11 +46,3 @@ circles = [
 ]
 
 anim = CircleAnimation(circles, CircleSampler)
-
-# x = np.linspace(0, 2 * np.pi, 400)
-# y = np.sin(x ** 2)
-
-# fig, axs = plt.subplots(2)
-# axs[0].plot(x,y)
-# axs[1].plot(x,y)
-# plt.show()

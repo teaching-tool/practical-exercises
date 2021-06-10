@@ -1,4 +1,5 @@
 from typing import List, Iterable
+from functools import reduce
 from advalg.graph import Graph, Edge
 from advalg.helpers import combinations
 
@@ -25,6 +26,10 @@ def is_hamcycle(g: Graph, tour: List[int]) -> bool:
     is_cycle = tour[0] == tour[-1]
     legal_edges = all([g.edge_exists(tour[i], tour[i+1]) for i in range(len(tour)-1)])
     return unique and all_visited and is_cycle and legal_edges
+
+def tour_cost(g: Graph, tour: List[int]) -> float:
+    """ Returns the total cost of the given tour in g. """
+    return sum([g.edge_weight(tour[i], tour[i+1]) for i in range(len(tour)-1)])
 
 def make_grid(rows: int, cols: int) -> Graph:
     """Constructs a grid graph with the given rows and columns"""

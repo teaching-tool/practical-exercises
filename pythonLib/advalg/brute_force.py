@@ -1,5 +1,6 @@
-from advalg.helpers import combinations
+from advalg.helpers import combinations, permutations, subsets
 import advalg.graph_helpers as gh
+import math
 
 def brute_perf_matchings(g):
     """Computes the number of perfect matchings in g using brute force."""
@@ -14,8 +15,8 @@ def brute_hamcycle(g):
     """
     tours = [p + (p[0],) for p in permutations(g.vertices(), g.vertex_count())]
     ham_cycles = [t for t in tours if gh.is_hamcycle(g,t)]
-    if len(ham_cycles) == 0: return inf
-    return min([tour_cost(g, t) for t in ham_cycles])
+    if len(ham_cycles) == 0: return math.inf
+    return min([gh.tour_cost(g, t) for t in ham_cycles])
 
 def brute_vc(g):
     """Computes the size of the minimum vertex cover of g using brute force"""
