@@ -48,7 +48,7 @@ class AdjMatrix:
 
     def get(self, u: int, v: int) -> int:
         """Returns the weight of edge (u,v) if it exists, otherwise 0"""
-        return self._m[r,c]
+        return self._m[u,v]
 
 class Graph:
     """
