@@ -38,7 +38,7 @@ class Graph:
         """Constructs a graph with vertices [0-n) and no edges"""
         self._vertex_count = n
         self._edge_count = 0
-        self._adj = [set() for v in range(n)]
+        self._adj = [set() for _ in range(n)]
         self._weight = {}
 
     def vertex_count(self) -> int:
@@ -102,7 +102,7 @@ class Graph:
 
     def edge_exists(self, u: int, v: int) -> bool:
         """Does the graph contain an edge (u,v)?"""
-        return u in self._adj and v in self._adj[u]
+        return self.has_vertex(u) and v in self._adj[u]
 
     def edge_weight(self, u: int, v: int) -> float:
         """Returns the weight associated with the edge (u,v)"""
@@ -120,10 +120,10 @@ class Graph:
 
     def copy(self) -> 'Graph':
         """Returns a deep copy of the graph"""
-        _copy = Graph()
+        _copy = Graph(self.vertex_count())
 
-        for v in self.vertices(): _copy.add_vertex(v)
-        for (u,v,w) in self.edges(): _copy.add_edge(u,v,w)
+        for (u,v,w) in self.edges():
+            _copy.add_edge(u,v,w)
 
         return _copy
 
