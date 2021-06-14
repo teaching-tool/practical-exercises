@@ -10,8 +10,13 @@ def vc_fpt(g, k):
     if k == 0: return False
 
     e = next(g.edges())
-    return vc_fpt(g.minus_vertices([e.u]), k-1)\
-           or vc_fpt(g.minus_vertices([e.v]), k-1)
+    return vc_fpt(rem(g, e.u), k-1)\
+           or vc_fpt(rem(g, e.v), k-1)
+
+def rem(g, v):
+    h = g.copy()
+    h.delete_incident(v)
+    return h
 
 def min_vc(g):
     n = g.vertex_count()

@@ -1,6 +1,5 @@
-from typing import Iterable, Iterator, List
-from functools import reduce
-from advalg.matrix import Matrix
+from typing import Iterator, List
+import numpy as np
 
 class Edge:
     """Represents a weighted undirected edge"""
@@ -9,10 +8,14 @@ class Edge:
         self.u = u
         self.v = v
         self.w = w
+
+    def has_endpoint(self, v: int):
+        """Is vertex v an endpoint for this edge?"""
+        return v == self.v or v == self.u
     
     def other(self, v: int) -> int:
         """Returns the end point that is not v"""
-        assert(v == self.v or v == self.u)
+        assert(self.has_endpoint(v))
         if v == self.v: return self.u
         return self.v
 
@@ -25,43 +28,17 @@ class Edge:
     def __lt__(self, other: 'Edge'):
         return self.w < other.w
 
-class AdjMatrix:
-    """Represents the adjacency matrix of an undirected graph"""
-    def __init__(self, vertices: Iterable[int], edges: Iterable[Edge]):
-        self._ident = {v:i for i,v in enumerate(vertices)}
-        self._size = len(self._ident)
-        self._m = Matrix(self._size, self._size)
-    
-        for (u,v,w) in edges:
-            uid = self._ident[u]
-            vid = self._ident[v]
-            self._m[uid, vid] = w
-            self._m[vid, uid] = w
-
-    def power(self, k: int) -> None:
-        """Raises the adjacency matrix to the k'th power"""
-        self._m **= k
-
-    def size(self) -> int:
-        """Returns the size of the adjacency matrix"""
-        return self._size
-
-    def get(self, u: int, v: int) -> int:
-        """Returns the weight of edge (u,v) if it exists, otherwise 0"""
-        return self._m[u,v]
-
 class Graph:
     """
     Represents a weighted undirected graph.
-    The vertices of the graph are represented as integers.
-    Vertices are not required to be in the range [0-n).
+    Vertices are integers in the range [0-n).
     Loops are permitted but parallel edges are not.
     """
     def __init__(self, n: int = 0):
         """Constructs a graph with vertices [0-n) and no edges"""
         self._vertex_count = n
         self._edge_count = 0
-        self._adj = {v:set() for v in range(n)}
+        self._adj = [set() for v in range(n)]
         self._weight = {}
 
     def vertex_count(self) -> int:
@@ -83,14 +60,7 @@ class Graph:
 
     def has_vertex(self, v: int) -> bool:
         """Is v a vertex in this graph?"""
-        return v in self._adj
-
-    def add_vertex(self, v: int) -> None:
-        """Add a new vertex v to the graph"""
-        assert(not self.has_vertex(v))
-        if v in self._adj: return
-        self._adj[v] = set()
-        self._vertex_count += 1
+        return 0 <= v < self.vertex_count()
 
     def add_edge(self, u: int, v: int, weight: float = 1) -> None:
         """Add an edge between vertices u and v with the given weight (1 by default)"""
@@ -109,20 +79,12 @@ class Graph:
 
     def vertices(self) -> Iterator[int]:
         """Returns all vertices in the graph as a generator"""
-        for v in self._adj.keys():
-            yield v
+        return range(self.vertex_count())
 
-    def delete_vertex(self, v: int) -> None:
-        """Delete vertex v and its incident edges"""
+    def degree(self, v) -> int:
+        """Returns the degree of vertex v"""
         assert(self.has_vertex(v))
-        self.delete_incident(v)
-        del self._adj[v]
-        self._vertex_count -= 1
-
-    def delete_vertices(self, vs: Iterable[int]) -> None:
-        """Deletes all vertices in vs and their incident edges"""
-        for v in vs:
-            self.delete_vertex(v)
+        return len(self._adj[v])
 
     def delete_incident(self, v: int) -> None:
         """Delete all edges incident with vertex v"""
@@ -147,15 +109,14 @@ class Graph:
         assert(self.edge_exists(u,v))
         return self._weight[(u,v)]
 
-    def adj_matrix(self) -> AdjMatrix:
+    def adj_matrix(self) -> np.ndarray:
         """Returns the adjacency matrix of the graph"""
-        return AdjMatrix(self.vertices(), self.edges())
-
-    def minus_vertices(self, vs: Iterable[int]) -> 'Graph':
-        """Returns a copy of the graph with all vertices in vs deleted"""
-        _copy = self.copy()
-        _copy.delete_vertices(vs)
-        return _copy
+        n = self.vertex_count()
+        m = np.zeros((n,n), dtype='int32')
+        for e in self.edges():
+            m[e.u, e.v] = e.w
+            m[e.v, e.u] = e.w
+        return m
 
     def copy(self) -> 'Graph':
         """Returns a deep copy of the graph"""
