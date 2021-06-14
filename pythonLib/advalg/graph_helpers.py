@@ -2,6 +2,7 @@ from typing import List, Iterable
 from functools import reduce
 from advalg.graph import Graph, Edge
 from advalg.helpers import combinations
+from random import random
 
 def is_iset(g: Graph, s: Iterable[int]) -> bool:
     """Is s an independent set of graph g?"""
@@ -78,4 +79,16 @@ def make_clique(n: int) -> Graph:
     for (u,v) in combinations(range(n), 2):
         g.add_edge(u,v)
         
+    return g
+
+def make_random(n: int, p: float) -> Graph:
+    """Constructs a random graph where each edge is sampled with probability p"""
+    assert(n >= 0 and 0 <= p <= 1)
+
+    g = Graph(n)
+
+    for (u,v) in combinations(range(n), 2):
+        if random() < p:
+            g.add_edge(u,v)
+    
     return g

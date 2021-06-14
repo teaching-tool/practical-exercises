@@ -5,7 +5,7 @@ import numpy as np
 def perfect_matchings(graph):
     if graph.vertex_count() % 2 != 0: 
         return 0
-        
+
     count = 0
 
     for subset in subsets(graph.vertices()):

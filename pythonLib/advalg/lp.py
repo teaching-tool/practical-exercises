@@ -1,5 +1,4 @@
-from functools import reduce
-from scipy.optimize import linprog
+import os
 
 class LPEntity:
     def __le__(self, right):
@@ -40,77 +39,61 @@ class TermList(LPEntity):
     def terms(self):
         return list(self.ts)
 
+    def to_lp(self):
+        lp_str = ""
+        for i,(c,x) in enumerate(self.ts):
+            if i == 0: lp_str += f"{c} x{x}"
+            else: lp_str += f" {c} x{x}"
+        return lp_str
+
 class Var(LPEntity):
     def __init__(self, x: int):
         self.x = x
 
     def terms(self):
         return [(1, self.x)]
+    
+    def to_lp(self):
+        return f"1 x{self.x}"
 
 class Minimize:
     def __init__(self, termlist: LPEntity):
-        self.terms = termlist.terms()
-
-    def coeff_vector(self, var_count):
-        vec = [0 for i in range(var_count)]
-
-        for (c,x) in self.terms:
-            vec[x] = c
-
-        return vec
+        self.termlist = termlist
 
     def __repr__(self):
-        return f"Minimize({self.terms})"
+        return f"Minimize({self.termlist})"
+
+    def to_lp(self):
+        return f"min: {self.termlist.to_lp()}"
 
 class Maximize:
     def __init__(self, termlist: LPEntity):
         self.terms = termlist.terms()
 
-    def coeff_vector(self, var_count):
-        vec = [0 for i in range(var_count)]
-
-        for (c,x) in self.terms:
-            vec[x] = -c
-
-        return vec
+    def to_lp(self):
+        return f"max: {self.termlist.to_lp()};"
         
 class ConstraintLE:
     def __init__(self, left, right):
         self.left = left
         self.right = right
 
-    def is_equality(self):
-        return False
-
-    def coeffs(self, var_count):
-        vec = [0 for i in range(var_count)]
-
-        for (c,x) in self.left.terms():
-            vec[x] = c
-
-        return vec, self.right
-    
     def __repr__(self):
         return f"{self.left} <= {self.right}"
+
+    def to_lp(self):
+        return f"{self.left.to_lp()} <= {self.right}"
 
 class ConstraintGE:
     def __init__(self, left, right):
         self.left = left
         self.right = right
 
-    def is_equality(self):
-        return False
-
-    def coeffs(self, var_count):
-        vec = [0 for i in range(var_count)]
-
-        for (c,x) in self.left.terms():
-            vec[x] = -c
-
-        return vec, -self.right
-    
     def __repr__(self):
         return f"{self.left} >= {self.right}"
+
+    def to_lp(self):
+        return f"{self.left.to_lp()} >= {self.right}"
 
 class LP:
     def __init__(self, variables, objective):
@@ -122,23 +105,35 @@ class LP:
         self.constraints.append(constraint)
 
     def solve(self):
-        n = len(self.variables)
-        obj = self.objective.coeff_vector(n)
+        in_file = "lp_in.txt"
+        out_file = "lp_out.txt"
+        lp_str = self.to_lp()
 
-        if len(self.constraints) == 0:
-            return linprog(obj, A_ub=None, b_ub=None, method='revised simplex')
+        with open(in_file, "w") as fp:
+            fp.write(lp_str)
 
-        A_ub, b_ub = [], []
+        os.system(f"lp_solve < {in_file} > {out_file}")
+        obj,vs = self.parse_output(out_file)
+        
+        os.remove(in_file)
+        os.remove(out_file)
+
+        return obj,vs
+
+    def parse_output(self, out_file):
+        with open(out_file, "r") as fp:
+            lines = fp.readlines()
+            if lines[1] == "This problem is infeasible\n":
+                return None
+            obj = float(lines[1][28:])
+            vs = [line.split()[1] for line in lines[4:]]
+            return obj, vs
+            
+    def to_lp(self):
+        lp_str = f"{self.objective.to_lp()};"
         for c in self.constraints:
-            coeff, cst = c.coeffs(n)
-            if c.is_equality():
-                A_eq.append(coeff)
-                b_eq.append(cst)
-            else:
-                A_ub.append(coeff)
-                b_ub.append(cst)
-
-        return linprog(obj, A_ub=A_ub, b_ub=b_ub, method='revised simplex')
+            lp_str += f"\n{c.to_lp()};"
+        return lp_str
 
     def __repr__(self):
         n = len(self.variables)
