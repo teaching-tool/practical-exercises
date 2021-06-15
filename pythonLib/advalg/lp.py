@@ -1,4 +1,5 @@
 import os
+import re
 
 class LPEntity:
     def __le__(self, right):
@@ -95,6 +96,11 @@ class ConstraintGE:
     def to_lp(self):
         return f"{self.left.to_lp()} >= {self.right}"
 
+class LPResult:
+    def __init__(self, obj_value, variables):
+        self.obj_value = obj_value
+        self.variables = variables
+
 class LP:
     def __init__(self, variables, objective):
         self.variables = variables
@@ -113,22 +119,35 @@ class LP:
             fp.write(lp_str)
 
         os.system(f"lp_solve < {in_file} > {out_file}")
-        obj,vs = self.parse_output(out_file)
+        res = self.parse_output(out_file)
         
         os.remove(in_file)
         os.remove(out_file)
 
-        return obj,vs
+        return res
 
     def parse_output(self, out_file):
+        number = r'[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
+
         with open(out_file, "r") as fp:
             lines = fp.readlines()
-            if lines[1] == "This problem is infeasible\n":
+            output = ''.join(lines)
+            if re.search("This problem is infeasible", output):
                 return None
-            obj = float(lines[1][28:])
-            vs = [line.split()[1] for line in lines[4:]]
-            return obj, vs
-            
+
+            obj_match = re.search(rf"Value of objective function: ({number})", output)
+            obj_value = float(obj_match.group(1))
+
+            variables = {}
+            for line in lines:
+                match = re.match(rf'x(\d+)\s+({number})', line)
+                if match:
+                    var = int(match.group(1))
+                    val = float(match.group(2))
+                    variables[var] = val
+
+            return LPResult(obj_value, variables)
+
     def to_lp(self):
         lp_str = f"{self.objective.to_lp()};"
         for c in self.constraints:
