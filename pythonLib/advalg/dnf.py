@@ -1,6 +1,6 @@
 from typing import List, Dict, Iterable
 
-class Clause:
+class DNFClause:
     """Represents a clause in a logical formula in DNF"""
     def __init__(self, literals: Iterable[int]):
         """
@@ -9,12 +9,13 @@ class Clause:
         """
         self._literals = set(literals)
     
-    # TODO fix for partial assignments
     def is_satisfied(self, assignment: Dict[int, bool]) -> bool:
         """Is the clause satisfied by the given assignment?"""
         for lit in self._literals:
-            if lit > 0 and not assignment[lit] or \
-               lit < 0 and assignment[-lit]: return False
+            if (abs(lit) not in assignment) or \
+               (lit > 0 and not assignment[lit]) or \
+               (lit < 0 and assignment[-lit]):
+                    return False
         return True
 
     def __len__(self):
@@ -24,11 +25,15 @@ class Clause:
     def __iter__(self):
         return iter(self._literals)
 
+    def _lit_str(self,literal):
+        if literal > 0: return f"x{literal}"
+        return f"!x{-literal}"
+
     def __repr__(self):
         s = "("
         for i,lit in enumerate(sorted(self._literals, key=abs)):
-            if i == 0: s += f"{lit}"
-            else: s += f", {lit}"
+            if i == 0: s += f"{self._lit_str(lit)}"
+            else: s += f" & {self._lit_str(lit)}"
         s += ")"
         return s
 
@@ -47,14 +52,14 @@ class DNF:
         """Returns the number of variables in the formula"""
         return self._var_count
 
-    def clause(self, i: int) -> Clause:
+    def clause(self, i: int) -> DNFClause:
         """Returns the clause with index i"""
         assert(0 <= i < self.clause_count())
         return self._clauses[i]
 
-    def clauses(self) -> List[Clause]:
+    def clauses(self) -> List[DNFClause]:
         """Returns a list with all clauses in the formula"""
-        return [self.clause(i) for i in range(self.clause_count())]
+        return list(self._clauses)
 
     def add_clause(self, literals: Iterable[int]) -> None:
         """
@@ -63,7 +68,7 @@ class DNF:
         """
         for literal in literals:
             assert(1 <= abs(literal) <= self.var_count())
-        self._clauses.append(Clause(literals))
+        self._clauses.append(DNFClause(literals))
 
     def is_satisfied(self, assignment: Dict[int, bool]) -> bool:
         """Is this DNF formula satisfied by the given assignment?"""
@@ -72,8 +77,8 @@ class DNF:
         return any([c.is_satisfied(assignment) for c in self._clauses])
     
     def __repr__(self):
-        s = f"DNF vars={self.var_count()} "
+        s = f"DNF object: {self.var_count()} variables {self.clause_count()} clauses"
         for i,c in enumerate(self.clauses()):
-            if i == 0: s += f"{c}"
-            else: s += f", {c}"
+            if i == 0: s += f"\n{c}"
+            else: s += f" |\n{c}"
         return s
