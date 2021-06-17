@@ -1,5 +1,6 @@
 from random import random, uniform
-from advalg.circles import Circle, CircleAnimation
+from advalg.tests_circle import test_circle_sampler
+from advalg.circle import Circle
 
 class CircleSampler:
     def __init__(self, circles):
@@ -45,4 +46,4 @@ circles = [
     Circle(5,4,1.5,'red')
 ]
 
-anim = CircleAnimation(circles, CircleSampler)
+test_circle_sampler(CircleSampler)

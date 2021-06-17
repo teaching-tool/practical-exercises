@@ -1,25 +1,9 @@
-
+from advalg.circle import Circle
 from matplotlib import pyplot as plt
 from matplotlib import animation
 from matplotlib.widgets import Button
-import math
 
 import numpy as np
-
-class Circle:
-    def __init__(self, x, y, radius, color):
-        self.x = x
-        self.y = y
-        self.radius = radius
-        self.color = color
-
-    def area(self):
-        return math.pi * self.radius * self.radius
-
-    def inside(self, x, y):
-        dx = x - self.x
-        dy = y - self.y
-        return math.sqrt(dx*dx + dy*dy) <= self.radius
 
 class CircleAnimation:
     def __init__(self, circles, sampler):
@@ -31,47 +15,19 @@ class CircleAnimation:
         self.estimates = []
         self.total_area = sum([c.area() for c in circles])
 
-        self.active_circle = None
-        self.animating = False
-
         self.fig = plt.figure(constrained_layout = True)
         self.gs = self.fig.add_gridspec(3)
         self.fig.set_dpi(100)
         self.fig.set_size_inches(7, 7)
 
-        #Setup drawing ax
         self.ax, self.title = self.setup_ax()
-        #Setup plot ax
+
         self.plot_ax = self.setup_plot_ax()
 
         self.sample = plt.Circle((5, -5), 0.1, ec='black')
 
         self.draw_circles()
 
-        self.fig.canvas.mpl_connect('button_press_event', self.onclick)
-        self.fig.canvas.mpl_connect('motion_notify_event', self.onmove)
-        self.fig.canvas.mpl_connect('button_release_event', self.onrelease)
-        self.fig.canvas.mpl_connect('key_press_event', self.onpress)
-
-        plt.show()
-
-    def setup_ax(self):
-        ax = self.fig.add_subplot(self.gs[:2], xlim=(0, 10), ylim=(0,10))
-        ax.set_aspect('equal', adjustable='box')
-        title = ax.text(0.5, 0.88, "", bbox={'facecolor':'w', 'alpha':0.5, 'pad':5},transform=ax.transAxes, ha="center")
-        return ax, title
-
-    def setup_plot_ax(self):
-        plot_ax = self.fig.add_subplot(self.gs[2], xlim=(0, self.total_samples))
-        plot_ax.set_xlabel("Samples")
-        plot_ax.set_ylabel("Area")
-        return plot_ax
-
-    def onpress(self, event):
-        if self.animating:
-            return
-            
-        self.animating = True
         area = self.actual_area()
         self.plot_ax.plot(np.arange(1, self.total_samples+1), np.ones(self.total_samples) * area, lw=3, label="Actual")
         self.line = self.plot_ax.plot([], [], lw=3, label="Estimate")[0]
@@ -84,30 +40,26 @@ class CircleAnimation:
                                interval=10,
                                blit=True,
                                repeat=False)
+        plt.show()
 
-    def onclick(self, event):
-        if event.inaxes == self.ax:
-            for c in self.circles:
-                if c.inside(event.xdata, event.ydata):
-                    self.active_circle = c
-                    break
+    def setup_ax(self):
+        ax = self.fig.add_subplot(self.gs[:2], xlim=(0, 100), ylim=(0,100))
+        ax.set_aspect('equal', adjustable='box')
+        title = ax.text(0.5, 0.88, "", bbox={'facecolor':'w', 'alpha':0.5, 'pad':5},transform=ax.transAxes, ha="center")
+        return ax, title
 
-    def onmove(self, event):
-        if event.inaxes == self.ax and self.active_circle:
-            self.active_circle.x = event.xdata
-            self.active_circle.y = event.ydata
-            self.draw_circles()
-
-    def onrelease(self, event):
-        if event.inaxes == self.ax:
-            self.active_circle = None
+    def setup_plot_ax(self):
+        plot_ax = self.fig.add_subplot(self.gs[2], xlim=(0, self.total_samples))
+        plot_ax.set_xlabel("Samples")
+        plot_ax.set_ylabel("Area")
+        return plot_ax
 
     def actual_area(self):
         area = 0
-        for x in np.linspace(0,10,100):
-            for y in np.linspace(0,10,100):
+        for x in np.linspace(0,100,100):
+            for y in np.linspace(0,100,100):
                 if self.in_circle(x,y):
-                    area += 0.01
+                    area += 1
         return area
 
     def in_circle(self, x, y):
