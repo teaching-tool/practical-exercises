@@ -1,13 +1,11 @@
-from advalg.circle import Circle
 from matplotlib import pyplot as plt
 from matplotlib import animation
-from matplotlib.widgets import Button
 
 import numpy as np
 
 class CircleAnimation:
-    def __init__(self, circles, sampler):
-        self.total_samples = 2000
+    def __init__(self, circles, sampler, samples = 1000, delay = 50):
+        self.total_samples = samples
         self.circles = circles
         self.sampler = sampler(circles)
         self.sample_success = 0
@@ -15,30 +13,27 @@ class CircleAnimation:
         self.estimates = []
         self.total_area = sum([c.area() for c in circles])
 
-        self.fig = plt.figure(constrained_layout = True)
+        self.fig = plt.figure()
+        self.fig.canvas.manager.set_window_title("Circle Animation")
         self.gs = self.fig.add_gridspec(3)
         self.fig.set_dpi(100)
         self.fig.set_size_inches(7, 7)
 
         self.ax, self.title = self.setup_ax()
-
         self.plot_ax = self.setup_plot_ax()
-
-        self.sample = plt.Circle((5, -5), 0.1, ec='black')
+        self.sample = plt.Circle((5, -5), 1, ec='black')
 
         self.draw_circles()
 
-        area = self.actual_area()
-        self.plot_ax.plot(np.arange(1, self.total_samples+1), np.ones(self.total_samples) * area, lw=3, label="Actual")
+        self.area = self.actual_area()
+        self.plot_ax.plot(np.arange(1, self.total_samples+1), np.ones(self.total_samples) * self.area, lw=3, label="Actual")
         self.line = self.plot_ax.plot([], [], lw=3, label="Estimate")[0]
         self.plot_ax.legend()
-        self.plot_ax.set_ylim(0, 2*area)
 
         self.anim = animation.FuncAnimation(self.fig, self.animate, 
                                init_func=self.init, 
                                frames=self.total_samples, 
-                               interval=10,
-                               blit=True,
+                               interval=delay,
                                repeat=False)
         plt.show()
 
@@ -56,17 +51,14 @@ class CircleAnimation:
 
     def actual_area(self):
         area = 0
-        for x in np.linspace(0,100,100):
-            for y in np.linspace(0,100,100):
+        for x in np.linspace(0,100,1000):
+            for y in np.linspace(0,100,1000):
                 if self.in_circle(x,y):
-                    area += 1
+                    area += 0.01
         return area
 
     def in_circle(self, x, y):
-        for c in self.circles:
-            if c.inside(x,y):
-                return True
-        return False
+        return any((c.inside(x,y) for c in self.circles))
 
     def area_estimate(self):
         ratio = self.sample_success / self.sample_count
@@ -87,6 +79,9 @@ class CircleAnimation:
         x = np.arange(1, self.sample_count+1)
         y = self.estimates
         self.line.set_data(x,y)
+        y_low = min(min(y), self.area) * 0.95
+        y_hi = max(max(y), self.area) * 1.05
+        self.plot_ax.set_ylim(y_low, y_hi)
 
     def draw_circles(self):
         self.ax.patches = []
@@ -98,8 +93,6 @@ class CircleAnimation:
     def init(self):
         self.sample.center = (5, 5)
         self.ax.add_patch(self.sample)
-
-        return self.sample, self.title, self.line
 
     def animate(self,i):
         self.sample_count = i+1
@@ -113,5 +106,3 @@ class CircleAnimation:
         self.update_sample(c_i, p)
         self.update_title()
         self.update_plot()
-        
-        return self.sample, self.title, self.line

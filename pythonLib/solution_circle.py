@@ -1,6 +1,5 @@
 from random import random, uniform
 from advalg.tests_circle import test_circle_sampler
-from advalg.circle import Circle
 
 class CircleSampler:
     def __init__(self, circles):
@@ -40,10 +39,4 @@ class CircleSampler:
 
         return x,y
 
-circles = [
-    Circle(6,6,2,'blue'),
-    Circle(4,6,1.75,'green'),
-    Circle(5,4,1.5,'red')
-]
-
-test_circle_sampler(CircleSampler)
+test_circle_sampler(CircleSampler, samples=350, delay=50)
