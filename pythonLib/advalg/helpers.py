@@ -27,6 +27,11 @@ def permutations(items: Iterable, count: int) -> Iterator[Tuple]:
     assert(0 <= count <= len(l))
     return itertools.permutations(l, count)
 
+def n_tuples(items: Iterable, count: int) -> Iterator[Tuple]:
+    l = list(items)
+    assert(0 <= count)
+    return itertools.product(items, repeat=count)
+
 def subsets(items: Iterable) -> Iterator[Tuple]:
     """Returns all subsets of items as an iterator of tuples"""
     l = list(items)
@@ -34,7 +39,8 @@ def subsets(items: Iterable) -> Iterator[Tuple]:
 
 def choose(n: int, k: int) -> int:
     """Returns the binomial coefficient n choose k"""
-    if (k == 0): return 1
+    if k == 0: return 1
     return (n * choose(n-1, k-1)) // k
+
 
 # TODO statistical physics formula

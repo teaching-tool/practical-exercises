@@ -15,9 +15,8 @@ class CircleAnimation:
 
         self.fig = plt.figure()
         self.fig.canvas.manager.set_window_title("Circle Animation")
-        self.gs = self.fig.add_gridspec(3)
         self.fig.set_dpi(100)
-        self.fig.set_size_inches(7, 7)
+        self.fig.set_size_inches(8, 6)
 
         self.ax, self.title = self.setup_ax()
         self.plot_ax = self.setup_plot_ax()
@@ -38,13 +37,13 @@ class CircleAnimation:
         plt.show()
 
     def setup_ax(self):
-        ax = self.fig.add_subplot(self.gs[:2], xlim=(0, 100), ylim=(0,100))
+        ax = plt.axes([0.125, 0.375, 0.75, 0.6], xlim=(0,100), ylim=(0,100))
         ax.set_aspect('equal', adjustable='box')
         title = ax.text(0.5, 0.88, "", bbox={'facecolor':'w', 'alpha':0.5, 'pad':5},transform=ax.transAxes, ha="center")
         return ax, title
 
     def setup_plot_ax(self):
-        plot_ax = self.fig.add_subplot(self.gs[2], xlim=(0, self.total_samples))
+        plot_ax = plt.axes([0.125, 0.075, 0.75, 0.25])
         plot_ax.set_xlabel("Samples")
         plot_ax.set_ylabel("Area")
         return plot_ax

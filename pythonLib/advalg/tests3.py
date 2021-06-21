@@ -1,9 +1,5 @@
 from advalg.dnf import DNF
 
-# 1 assignment not good test
-dnf1 = DNF(3)
-dnf1.add_clause([1,2,3])
-
 # 8 assignments
 dnf2 = DNF(4)
 dnf2.add_clause([1,2])
@@ -27,11 +23,9 @@ dnf5.add_clause([2,-3,-4,6,10,-12,13,-15])
 dnf5.add_clause([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
 
 tests = [
-    (dnf1, 1),
     (dnf2, 8),
     (dnf3, 28),
     (dnf4, 704),
-    (dnf5, 129)
 ]
 
 samples = [10, 100, 1000]

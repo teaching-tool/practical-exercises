@@ -15,13 +15,17 @@ class CircleEditor:
         self.colors.reverse()
         self.max_circles = len(self.colors)
 
-        # Set up circles area
-        fig,ax = plt.subplots()
+        # Set up figure
+        fig = plt.figure()
+        fig.set_size_inches(8,6)
         fig.canvas.manager.set_window_title("Circle Editor")
+        self.fig = fig
+
+        # Set up drawings axes
+        ax = plt.axes([0.125, 0.125, 0.75, 0.75])
         ax.set_aspect('equal', adjustable='box')
         ax.set_xlim(0, 100)
         ax.set_ylim(0, 100)
-        self.fig = fig
         self.ax = ax
 
         # Add size slider
@@ -37,7 +41,7 @@ class CircleEditor:
         freq_slider.on_changed(self.set_radius)
 
         # Add start button
-        btn_ax = plt.axes([0.45, 0.05, 0.1, 0.05])
+        btn_ax = plt.axes([0.45, 0.01, 0.1, 0.05])
         btn = Button(btn_ax, "Start")
         btn.on_clicked(self.on_start_clicked)
 

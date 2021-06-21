@@ -1,4 +1,4 @@
-from advalg.helpers import combinations, permutations, subsets
+from advalg.helpers import combinations, n_tuples, permutations, subsets
 import advalg.graph_helpers as gh
 import math
 
@@ -30,3 +30,14 @@ def brute_vc(g):
 def brute_isets(g):
     """Uses brute force to construct all independent sets of g"""
     return [s for s in subsets(g.vertices()) if gh.is_iset(g,s)]
+
+def brute_dnf_count(dnf):
+    """Uses brute force to count number of satisfying assignments in the given dnf"""
+    count = 0
+
+    for tup in n_tuples([True, False], dnf.var_count()):
+        asn = {(i+1):tup[i] for i in range(len(tup))}
+        if dnf.is_satisfied(asn):
+            count += 1
+    
+    return count
