@@ -1,4 +1,5 @@
 from advalg.graph import Graph
+from typing import Callable
 
 def load_graph():
     with open("data/vc_graph_small.txt") as reader:
@@ -14,7 +15,7 @@ def load_graph():
 
 g = load_graph()
 
-def test_vc(vc_fpt):
+def test_vc(vc_fpt: Callable[[Graph, int], bool]) -> None:
     """Tests the implementation of the FPT algorithm for vertex cover"""
     n = g.vertex_count()
     actual = next(k for k in range(n+1) if vc_fpt(g, k))

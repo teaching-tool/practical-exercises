@@ -1,4 +1,5 @@
 from advalg.dnf import DNF
+from typing import Callable
 
 # 8 assignments
 dnf2 = DNF(4)
@@ -30,36 +31,11 @@ tests = [
 
 samples = [10, 100, 1000]
 
-def test_dnf(counter):
-    """
-    Tests the given counter function on several DNF formulas.
-    """
+def test_dnf(counter: Callable[[DNF, int], float]):
+    """Tests the given counter function on several DNF formulas"""
     for (dnf, count) in tests:
         print(dnf)
         print(f"actual #sat = {count}")
         for s in samples:
             print(f"approx #sat ({s} iters) = {counter(dnf, s)}")
         print()
-
-# This is only for testing
-def brute_count(dnf):
-    """
-    Uses brute force to count number of satisfying assignments in the given dnf.
-    Will be moved to some kind of brute force module.
-    """
-    assignments = [[]]
-
-    for i in range(dnf.var_count()):
-        new = []
-        for a in assignments:
-            new.append(a + [False])
-            new.append(a + [True])
-        assignments = new
-
-    count = 0
-    for a in assignments:
-        asn = {(i+1):a[i] for i in range(len(a))}
-        if dnf.is_satisfied(asn):
-            count += 1
-
-    return count

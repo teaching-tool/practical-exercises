@@ -1,10 +1,8 @@
 from math import inf
-from advalg.helpers import haversine, combinations, subsets
-from advalg.graph import Graph
+from advalg.helpers import  combinations, subsets
 import advalg.prim as prim
 from advalg.tests4 import test_tsp_dp, test_tsp_approx, test_vc_approx
 from advalg.lp import *
-from itertools import accumulate
 
 def tsp_dp(start, g):
     vts = frozenset(g.vertices())

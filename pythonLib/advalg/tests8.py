@@ -1,6 +1,4 @@
-from advalg.graph import Graph
-from advalg.helpers import subsets
-from advalg.graph_helpers import make_grid
+from typing import Callable
 
 max_tests = [
     (4,4,8),
@@ -16,7 +14,7 @@ count_tests = [
     (12,12,162481813349792588536582997),
 ]
 
-def test_max_iset(max_iset):
+def test_max_iset(max_iset: Callable[[int, int], int]) -> None:
     """Tests the implementation of the DP for maximum independent set"""
     for r,c,m in max_tests:
         actual = max_iset(r,c)
@@ -25,7 +23,7 @@ def test_max_iset(max_iset):
         else: 
             print(f"Max iset {r}x{c} test passed!")
 
-def test_count_iset(count_iset):
+def test_count_iset(count_iset: Callable[[int,int], int]) -> None:
     """Tests the implementation of the DP for counting independent sets"""
     for r,c,n in count_tests:
         actual = count_iset(r,c)

@@ -79,7 +79,8 @@ class Graph:
 
     def vertices(self) -> Iterator[int]:
         """Returns all vertices in the graph as a generator"""
-        return range(self.vertex_count())
+        for v in range(self.vertex_count()):
+            yield v
 
     def degree(self, v) -> int:
         """Returns the degree of vertex v"""

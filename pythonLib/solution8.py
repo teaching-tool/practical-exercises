@@ -1,6 +1,5 @@
 from collections import deque
 from advalg.helpers import subsets
-from advalg.graph import Graph
 from advalg.graph_helpers import make_grid
 from advalg.tests8 import test_max_iset, test_count_iset
 

@@ -1,6 +1,7 @@
 import os
 import re
-from typing import Tuple
+import subprocess
+from typing import Tuple, Dict
 from advalg.cnf import CNF
 
 def is_satisfiable(cnf: CNF) -> bool:
@@ -15,7 +16,8 @@ def solve(cnf: CNF) -> bool:
     with open(in_file, "w") as fp:
         fp.write(to_cnf_format(cnf))
 
-    os.system(f"minisat {in_file} {out_file} -verb=0")
+    command = f"minisat {in_file} {out_file}"
+    subprocess.run(command, shell=True, capture_output=True)
     success, solution = parse_output(out_file)
 
     os.remove(in_file)
@@ -23,7 +25,7 @@ def solve(cnf: CNF) -> bool:
 
     return success, solution
 
-def parse_output(out_file: str) -> Tuple:
+def parse_output(out_file: str) -> Tuple[bool, Dict[int, bool]]:
     with open(out_file, "r") as fp:
         lines = fp.readlines()
 
@@ -44,7 +46,7 @@ def to_cnf_format(cnf: CNF) -> str:
 
 def parse_clause(string: str):
     """Parse a CNF clause"""
-    return [int(l) for l in str.split(" ")][:-1]
+    return [int(l) for l in string.split(" ")][:-1]
 
 def parse_cnf(string: str) -> CNF:
     """Returns a CNF object from the given string representation"""

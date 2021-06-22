@@ -1,3 +1,4 @@
+from typing import Callable
 from advalg.graph_helpers import *
 
 matchings_cases = [
@@ -27,15 +28,14 @@ hamcycle_cases = [
     ("10-clique", make_clique(10), 181440)
 ]
 
-def test_matchings(perfect_matchings):
+def test_matchings(perfect_matchings: Callable[[Graph], int]) -> None:
     """Tests the implementation of the inclusion-exclusion algorithm for perfect matchings"""
     for name,g,m in matchings_cases:
         actual = perfect_matchings(g)
         if actual == m: print(f"Perfect matchings test ({name}) passed!")
         else: print(f"Perfect matchings test ({name}) failed. Expected {m} actual {actual}")
 
-
-def test_ham_cycles(hamiltonian_cycles):
+def test_ham_cycles(hamiltonian_cycles: Callable[[Graph], int]) -> None:
     """Tests the implementation of inclusion-exclusion algorithm for hamiltonian cycles"""
     for name,g,h in hamcycle_cases:
         actual = hamiltonian_cycles(g)

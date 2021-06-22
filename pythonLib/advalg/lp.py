@@ -1,5 +1,6 @@
 import os
 import re
+import subprocess
 
 class LPEntity:
     def __le__(self, right):
@@ -112,41 +113,37 @@ class LP:
 
     def solve(self):
         in_file = "lp_in.txt"
-        out_file = "lp_out.txt"
         lp_str = self.to_lp()
 
         with open(in_file, "w") as fp:
             fp.write(lp_str)
 
-        os.system(f"lp_solve < {in_file} > {out_file}")
-        res = self.parse_output(out_file)
+        command = f"lp_solve < {in_file}"
+        res = subprocess.run(command, shell = True, capture_output=True, text = True)
+        res = self.parse_output(res.stdout)
         
         os.remove(in_file)
-        os.remove(out_file)
 
         return res
 
-    def parse_output(self, out_file):
+    def parse_output(self, output:str):
         number = r'[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
+        
+        if re.search("This problem is infeasible", output):
+            return None
 
-        with open(out_file, "r") as fp:
-            lines = fp.readlines()
-            output = ''.join(lines)
-            if re.search("This problem is infeasible", output):
-                return None
+        obj_match = re.search(rf"Value of objective function: ({number})", output)
+        obj_value = float(obj_match.group(1))
 
-            obj_match = re.search(rf"Value of objective function: ({number})", output)
-            obj_value = float(obj_match.group(1))
+        variables = {}
+        for line in output.splitlines():
+            match = re.match(rf'x(\d+)\s+({number})', line)
+            if match:
+                var = int(match.group(1))
+                val = float(match.group(2))
+                variables[var] = val
 
-            variables = {}
-            for line in lines:
-                match = re.match(rf'x(\d+)\s+({number})', line)
-                if match:
-                    var = int(match.group(1))
-                    val = float(match.group(2))
-                    variables[var] = val
-
-            return LPResult(obj_value, variables)
+        return LPResult(obj_value, variables)
 
     def to_lp(self):
         lp_str = f"{self.objective.to_lp()};"

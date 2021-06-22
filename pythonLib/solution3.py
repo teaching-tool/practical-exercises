@@ -1,6 +1,5 @@
 from random import random
 from itertools import accumulate
-from advalg.dnf import DNF
 from advalg.tests3 import test_dnf
 
 def approx_count(dnf, samples):
