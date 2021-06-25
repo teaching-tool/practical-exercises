@@ -7,5 +7,6 @@ setup(
     author = "Otto Clausen",
     packages = ['advalg'],
     install_requires = ['numpy', 'matplotlib'],
-    setup_requires = ['numpy', 'matplotlib']
+    setup_requires = ['numpy', 'matplotlib'],
+    package_data={'advalg': ['data/*']}
 )

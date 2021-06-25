@@ -1,6 +1,0 @@
-
-Value of objective function: 3.66666667
-
-Actual values of the variables:
-x1                        2.66667
-x0                              1

@@ -1,10 +1,7 @@
-import os
 from advalg.graph import Graph
 from typing import Callable
 
-dirname = os.path.dirname(__file__)
-graph_path = os.path.join(dirname, 'data/vc_graph_small.txt')
-g = Graph.from_file(graph_path)
+g = Graph.from_file("data/vc_graph_small.txt")
 
 def test_vc(vc_fpt: Callable[[Graph, int], bool]) -> None:
     """Tests the implementation of the FPT algorithm for vertex cover"""

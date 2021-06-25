@@ -1,17 +1,14 @@
-from advalg.dnf import DNF
+from advalg.helpers import combinations, n_tuples, permutations, subsets
 import advalg.graph_helpers as gh
 import math
-from advalg.helpers import combinations, n_tuples, permutations, subsets
-from advalg.graph import Graph
-from typing import List, Tuple
 
-def brute_perf_matchings(g: Graph) -> int:
+def brute_perf_matchings(g):
     """Computes the number of perfect matchings in g using brute force."""
     n = g.vertex_count()
     if n % 2 != 0: return 0
     return len([c for c in combinations(g.edges(), n//2) if gh.is_perf_matching(g,c)])
 
-def brute_cheapest_hamcycle(g: Graph) -> float:
+def brute_cheapest_hamcycle(g):
     """
     Computes the weight of the cheapest hamiltonian cycle in g.
     Returns inf if no hamiltonian cycle exists.
@@ -21,20 +18,20 @@ def brute_cheapest_hamcycle(g: Graph) -> float:
     if len(ham_cycles) == 0: return math.inf
     return min([gh.tour_cost(g, t) for t in ham_cycles])
 
-def brute_hamcycles(g: Graph):
+def brute_hamcycles(g):
     """Constructs all hamiltonian cycles of g using brute force"""
     tours = (p + (p[0],) for p in permutations(g.vertices(), g.vertex_count()))
     return (t for t in tours if gh.is_hamcycle(g,t))
 
-def brute_vc(g: Graph) -> int:
+def brute_vc(g):
     """Computes the size of the minimum vertex cover of g using brute force"""
     return min([len(sub) for sub in subsets(g.vertices()) if gh.is_vc(g,sub)])
 
-def brute_isets(g: Graph) -> List[Tuple[int]]:
+def brute_isets(g):
     """Uses brute force to construct all independent sets of g"""
     return [s for s in subsets(g.vertices()) if gh.is_iset(g,s)]
 
-def brute_dnf_count(dnf: DNF) -> int:
+def brute_dnf_count(dnf):
     """Uses brute force to count number of satisfying assignments in the given dnf"""
     count = 0
 

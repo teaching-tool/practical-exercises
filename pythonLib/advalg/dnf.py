@@ -1,4 +1,4 @@
-from typing import List, Dict, Iterable
+from typing import List, Dict, Iterable, Set, Iterator
 
 class DNFClause:
     """Represents a clause in a logical formula in DNF"""
@@ -18,12 +18,17 @@ class DNFClause:
                     return False
         return True
 
-    def __len__(self):
+    def __len__(self) -> int:
         """Returns the number of literals in the clause"""
         return len(self._literals)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[int]:
+        """Returns an iterator for the literals of the clause"""
         return iter(self._literals)
+
+    def literals(self) -> Set[int]:
+        """Returns the set of literals in the clause"""
+        return set(self._literals)
 
     def _lit_str(self,literal):
         if literal > 0: return f"x{literal}"

@@ -1,5 +1,5 @@
 from math import inf
-from advalg.helpers import  combinations, subsets
+from advalg.helpers import combinations, subsets
 import advalg.prim as prim
 from advalg.tests4 import test_tsp_dp, test_tsp_approx, test_vc_approx
 from advalg.lp import *
@@ -50,26 +50,19 @@ def vc_approx(g):
     
     return vc
 
-# TODO find compatible lp solver
-# Minimum weight vertex cover
 def vc_lp(g):
-
-    x = [Var(v) for v in g.vertices()]
-    obj = Minimize(([1*var for var in x]))
-
-    lp = LP(g.vertex_count, obj)
-    # One variable pr. vertex (0 or 1) is v in the vertex cover?
-    # Minimize xv * wv (vertex weight)
-    # Contraints for each edge u,v xu + xv >= 1
-    
+    x = variables(g.vertex_count())
+    obj = Minimize(LinearFunc.sum(x))
+ 
+    lp = LP(x, obj)
     for e in g.edges():
         lp.add_constraint(x[e.u] + x[e.v] >= 1)
 
-    print(lp.solve())
-
+    asn = lp.solve().variables
+    return {x for x in asn if asn[x] >= 0.5}
 
 #Test
 test_tsp_dp(tsp_dp)
 test_tsp_approx(tsp_approx)
 test_vc_approx(vc_approx)
-#test_vc_approx(vc_lp) Not done
+test_vc_approx(vc_lp)

@@ -1,10 +1,5 @@
-import os
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from typing import List
-
-dirname = os.path.dirname(__file__)
-map_path = os.path.join(dirname, 'data/Denmark.png')
 
 pos = {
     "Copenhagen": (687,517),
@@ -25,7 +20,7 @@ pos = {
     "Grenaa": (470,347)
 }
 
-def plot_tour(tour: List[int], title: str):
+def plot_tour(tour, title):
     """
     Visualizes the given tour of danish cities on a map.
     The given title is shown on top of the map.
@@ -33,7 +28,7 @@ def plot_tour(tour: List[int], title: str):
     xs = [pos[city][0] for city in tour]
     ys = [pos[city][1] for city in tour]
 
-    img = mpimg.imread(map_path)
+    img = mpimg.imread("data/Denmark.png")
     plt.title(title)
     plt.imshow(img)
     plt.axis("off")

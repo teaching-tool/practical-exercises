@@ -1,9 +1,4 @@
-from advalg.graph import Graph
 from advalg.tests6 import test_vc
-
-#TODO find compatible SAT-solver
-def cnf_experiment():
-    pass
 
 def vc_fpt(g, k):
     if g.edge_count() == 0: return True

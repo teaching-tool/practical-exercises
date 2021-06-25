@@ -31,7 +31,6 @@ def sample_assignment(dnf, clause_idx):
     n = dnf.var_count()
     assignment = {v : random() < 0.5 for v in range(1, n+1)}
 
-    # TODO find better solution
     for lit in dnf.clause(clause_idx):
         if lit > 0: assignment[lit] = True
         if lit < 0: assignment[-lit] = False

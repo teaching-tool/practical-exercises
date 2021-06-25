@@ -52,6 +52,7 @@ class LinearFunc(LPEntity):
             else: lp_str += f" {c} x{x}"
         return lp_str
 
+# Just var_number
 class Var(LPEntity):
     def __init__(self, x: int):
         self.x = x
@@ -65,6 +66,7 @@ class Var(LPEntity):
     def __repr__(self):
         return f"x{self.x}"
 
+# Takes a termlist (])
 class Minimize:
     def __init__(self, lin_func: LPEntity):
         self.lin_func = lin_func
@@ -113,23 +115,15 @@ class LPResult:
         self.variables = variables
 
 class LP:
-    """Represents a Linear Programming problem"""
     def __init__(self, variables: List[Var], objective):
-        """Construct a LP problem with the given variables and objective function (Minimize or Maximize)"""
         self.variables = variables
         self.objective = objective
         self.constraints = []
 
     def add_constraint(self, constraint) -> None:
-        """Add a constrant to this problem"""
         self.constraints.append(constraint)
 
     def solve(self) -> LPResult:
-        """
-        Attempt to solve the LP problem.
-        Returns None if the problem is infeasible.
-        Returns an LPResult if problem is feasible.
-        """
         in_file = "lp_in.txt"
         lp_str = self.to_lp()
 
@@ -181,5 +175,4 @@ class LP:
         return s
 
 def variables(n: int) -> List[Var]:
-    """Get a list of variables [x0, x1, ... x_n-1]"""
     return [Var(i) for i in range(n)]

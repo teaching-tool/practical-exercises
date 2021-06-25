@@ -41,3 +41,6 @@ def choose(n: int, k: int) -> int:
     """Returns the binomial coefficient n choose k"""
     if k == 0: return 1
     return (n * choose(n-1, k-1)) // k
+
+
+# TODO statistical physics formula

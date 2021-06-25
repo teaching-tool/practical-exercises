@@ -1,13 +1,8 @@
-import os
 from advalg.graph import Graph
 from advalg.helpers import haversine
 from advalg.map_visualizer import plot_tour
 from advalg.graph_helpers import is_hamcycle, is_vc
 from typing import Callable, List, Iterable
-
-dirname = os.path.dirname(__file__)
-cities_path = os.path.join(dirname, 'data/cities.txt')
-graph_path = os.path.join(dirname, 'data/sheet4_graph.txt')
 
 def _cities_denmark():
     """
@@ -19,7 +14,7 @@ def _cities_denmark():
     names = []
     positions = []
 
-    with open(cities_path) as reader:
+    with open("data/cities.txt") as reader:
         for line in reader.readlines():
             name,pos = line.split(",")
             lat,lon = pos.split("/")
@@ -73,7 +68,7 @@ def test_tsp_approx(tsp_approx: Callable[[int, Graph], List[int]]) -> None:
 
 def test_vc_approx(vc_approx: Callable[[Graph], Iterable[int]]) -> None:
     """Tests the implementation of a 2-approximation for vertex cover"""
-    g = Graph.from_file(graph_path)
+    g = Graph.from_file("data/sheet4_graph.txt")
     vc_size = 70
     vc = set(vc_approx(g))
     if not is_vc(g, vc):
