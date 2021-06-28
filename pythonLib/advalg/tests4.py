@@ -49,6 +49,7 @@ cost = 964225.4
 
 def test_tsp_dp(tsp_dp: Callable[[int, Graph], List[int]]) -> None:
     """Tests the implementation of the DP for TSP"""
+    print(f"Testing: {tsp_dp.__name__}...")
     tour = tsp_dp(0,g)
     cities = [names[i] for i in tour]
     if not is_hamcycle(g,tour):
@@ -61,6 +62,7 @@ def test_tsp_dp(tsp_dp: Callable[[int, Graph], List[int]]) -> None:
 
 def test_tsp_approx(tsp_approx: Callable[[int, Graph], List[int]]) -> None:
     """Tests the implementation of the 2-approximation for TSP"""
+    print(f"Testing: {tsp_approx.__name__}...")
     tour = tsp_approx(0,g)
     cities = [names[i] for i in tour]
     if not is_hamcycle(g,tour):
@@ -73,6 +75,7 @@ def test_tsp_approx(tsp_approx: Callable[[int, Graph], List[int]]) -> None:
 
 def test_vc_approx(vc_approx: Callable[[Graph], Iterable[int]]) -> None:
     """Tests the implementation of a 2-approximation for vertex cover"""
+    print(f"Testing: {vc_approx.__name__}...")
     g = Graph.from_file(graph_path)
     vc_size = 70
     vc = set(vc_approx(g))

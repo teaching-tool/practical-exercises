@@ -31,13 +31,13 @@ hamcycle_cases = [
 def test_matchings(perfect_matchings: Callable[[Graph], int]) -> None:
     """Tests the implementation of the inclusion-exclusion algorithm for perfect matchings"""
     for name,g,m in matchings_cases:
-        actual = perfect_matchings(g)
-        if actual == m: print(f"Perfect matchings test ({name}) passed!")
-        else: print(f"Perfect matchings test ({name}) failed. Expected {m} actual {actual}")
+        res = perfect_matchings(g)
+        if res == m: print(f"Perfect matchings test ({name}) passed!")
+        else: print(f"Perfect matchings test ({name}) failed. Expected {m} got {res}")
 
 def test_ham_cycles(hamiltonian_cycles: Callable[[Graph], int]) -> None:
     """Tests the implementation of inclusion-exclusion algorithm for hamiltonian cycles"""
     for name,g,h in hamcycle_cases:
-        actual = hamiltonian_cycles(g)
-        if actual == h: print(f"Ham-cycle test ({name}) passed!")
-        else: print(f"Ham-cycle test failed. Expected {h} actual {actual}")
+        res = hamiltonian_cycles(g)
+        if res == h: print(f"Ham-cycle test ({name}) passed!")
+        else: print(f"Ham-cycle test failed. Expected {h} got {res}")

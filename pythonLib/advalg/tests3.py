@@ -42,6 +42,7 @@ def test_dnf(counter: Callable[[DNF, int], float]):
     Tests the given counter function on 4 different DNF formulas.
     Plots the output of your implementation and compares with actual result.
     """
+    print(f"Testing: {counter.__name__}...")
     fig, axs = plt.subplots(2,2)
     fig.set_size_inches(8,6)
     fig.canvas.manager.set_window_title("DNF Tests")

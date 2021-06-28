@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from matplotlib.backend_bases import MouseButton
 from matplotlib.widgets import Button, Slider
+import numpy as np
 
 class CircleEditor:
     def __init__(self, start_action):
@@ -96,7 +97,8 @@ class CircleEditor:
 
     def add_circle(self, x, y, radius):
         color = self.colors.pop()
-        circle = plt.Circle((x, y), radius, alpha=0.85, ec="black", fc=color)
+        center = np.clip((x,y), radius, 100 - radius)
+        circle = plt.Circle(center, radius, alpha=0.85, ec="black", fc=color)
         self.circles.append(circle)
         self.ax.add_patch(circle)
         self.fig.canvas.draw()
@@ -114,7 +116,10 @@ class CircleEditor:
     def on_move(self, event):
         if not event.inaxes == self.ax or self.dragging is None:
             return
-        self.dragging.center = (event.xdata, event.ydata)
+        
+        radius = self.dragging.radius
+        center = np.clip((event.xdata, event.ydata), radius, 100 - radius)
+        self.dragging.center = center
         self.fig.canvas.draw()
 
     def get_circles(self):
