@@ -14,7 +14,7 @@ class CNFClause:
         for lit in self._literals:
             if abs(lit) not in assignment:
                 continue
-            if (lit > 0 and assignment[lit]) or (lit < 0 and not assignment[lit]):
+            if (lit > 0 and assignment[lit]) or (lit < 0 and not assignment[-lit]):
                 return True
         return False
 

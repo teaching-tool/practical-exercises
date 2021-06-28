@@ -52,13 +52,13 @@ def vc_approx(g):
 
 def vc_lp(g):
     x = variables(g.vertex_count())
-    obj = Minimize(LinearFunc.sum(x))
+    obj = Minimize(LinearComb.sum(x))
  
     lp = LP(x, obj)
     for e in g.edges():
         lp.add_constraint(x[e.u] + x[e.v] >= 1)
 
-    asn = lp.solve().variables
+    asn = lp.solve().assignment
     return {x for x in asn if asn[x] >= 0.5}
 
 #Test

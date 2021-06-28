@@ -5,34 +5,34 @@ from typing import List, Tuple, Dict
 
 class LPEntity:
     def __le__(self, right: float) -> "ConstraintLE":
-        return ConstraintLE(LinearFunc(self.terms()), right)
+        return ConstraintLE(LinearComb(self.terms()), right)
 
     def __ge__(self, right: float) -> "ConstraintGE":
-        return ConstraintGE(LinearFunc(self.terms()), right)
+        return ConstraintGE(LinearComb(self.terms()), right)
 
-    def __add__(self, other: "LPEntity") -> "LinearFunc":
-        return LinearFunc(self.terms() + other.terms())
+    def __add__(self, other: "LPEntity") -> "LinearComb":
+        return LinearComb(self.terms() + other.terms())
 
-    def __sub__(self, other: "LPEntity") -> "LinearFunc":
+    def __sub__(self, other: "LPEntity") -> "LinearComb":
         return self + (-other)
 
-    def __neg__(self) -> "LinearFunc":
+    def __neg__(self) -> "LinearComb":
         return self * -1
 
-    def __mul__(self, m: float) -> "LinearFunc":
-        return LinearFunc([(m*c, x) for (c,x) in self.terms()])
+    def __mul__(self, m: float) -> "LinearComb":
+        return LinearComb([(m*c, x) for (c,x) in self.terms()])
 
-    def __rmul__(self, m: float) -> "LinearFunc":
+    def __rmul__(self, m: float) -> "LinearComb":
         return self * m
 
 #List of tuples (constant, var_number)
-class LinearFunc(LPEntity):
+class LinearComb(LPEntity):
     def __init__(self, ts: List[Tuple[float, int]] = None):
         self.ts = ts if ts is not None else []
 
     @staticmethod
-    def sum(vars: List["Var"]) -> "LinearFunc":
-        return LinearFunc([(1, v.x) for v in vars])
+    def sum(vars: List["Var"]) -> "LinearComb":
+        return LinearComb([(1, v.x) for v in vars])
 
     def __repr__(self):
         s = ""
@@ -83,7 +83,7 @@ class Maximize:
         return f"Maximize({self.lin_func})"
 
     def to_lp(self) -> str:
-        return f"max: {self.lin_func.to_lp()};"
+        return f"max: {self.lin_func.to_lp()}"
         
 class ConstraintLE:
     def __init__(self, left: LPEntity, right: float):
@@ -110,7 +110,7 @@ class ConstraintGE:
 class LPResult:
     def __init__(self, obj_value: float, variables: Dict[int, float]):
         self.obj_value = obj_value
-        self.variables = variables
+        self.assignment = variables
 
 class LP:
     """Represents a Linear Programming problem"""
