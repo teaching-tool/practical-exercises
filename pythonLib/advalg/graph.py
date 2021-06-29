@@ -2,7 +2,10 @@ from typing import Iterator, List
 import numpy as np
 
 class Edge:
-    """Represents a weighted undirected edge"""
+    """
+    Represents a weighted undirected edge.
+    Has member variables u, v, w for the endpoints and weight respectively.
+    """
     def __init__(self, u: int, v: int, w: float):
         """Constructs an edge between vertices u and v with weight w"""
         self.u = u

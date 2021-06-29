@@ -25,7 +25,6 @@ class LPEntity:
     def __rmul__(self, m: float) -> "LinearComb":
         return self * m
 
-#List of tuples (constant, var_number)
 class LinearComb(LPEntity):
     def __init__(self, ts: List[Tuple[float, int]] = None):
         self.ts = ts if ts is not None else []
@@ -108,9 +107,13 @@ class ConstraintGE:
         return f"{self.left.to_lp()} >= {self.right}"
 
 class LPResult:
-    def __init__(self, obj_value: float, variables: Dict[int, float]):
+    """
+    Represents a solution to a Linear Programming Problem.
+    Has member variables obj_value (float) and assignment (Dict[int, float])
+    """
+    def __init__(self, obj_value: float, assignment: Dict[int, float]):
         self.obj_value = obj_value
-        self.assignment = variables
+        self.assignment = assignment
 
 class LP:
     """Represents a Linear Programming problem"""

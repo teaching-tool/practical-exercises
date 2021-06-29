@@ -15,14 +15,18 @@ The package has 4 dependencies which must be installed.
 - Minisat (http://minisat.se/)
 
 ## Installation
-Numpy and Matplotlib can be installed simply by running:
-
-pip3 install numpy matplotlib
-
 LP_Solve and Minisat are standalone programs. Download the programs from the links above and follow their installation instructions. The programs should be included in your PATH variable. To check that both programs are installed properly you can run:
 
-minisat --help  
-lp_solve -h
+`minisat --help`  
+`lp_solve -h`
+
+The codebase comes with a `setup.py` file. The package can be installed by running:
+
+`python setup.py install`
+
+Numpy and Matplotlib are python packages and should be installed automatically by running the setup script. Otherwise, they can be installed by running:
+
+`pip3 install numpy matplotlib`
 
 ## Documentation
-The documentation for the package can be found here: (INSERT LINK)
+The documentation for the package can be found in the docs folder. Additionally, the files `sat_example.py` and `lp_examples.py` contain examples for the SAT-solver and LP-solver respectively.

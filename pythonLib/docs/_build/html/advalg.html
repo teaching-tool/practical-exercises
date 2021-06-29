@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="advalg" href="modules.html" /> 
+    <link rel="prev" title="Welcome to the documentation for Advanced Algorithms!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,23 +86,25 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">advalg</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">advalg package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.dnf">advalg.dnf module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.graph">advalg.graph module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.helpers">advalg.helpers module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.map_visualizer">advalg.map_visualizer module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#advalg-matrix-module">advalg.matrix module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.prim">advalg.prim module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.tests3">advalg.tests3 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.tests4">advalg.tests4 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.tests5">advalg.tests5 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.tests6">advalg.tests6 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg.tests8">advalg.tests8 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-advalg">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">advalg package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.brute_force">advalg.brute_force module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.circle">advalg.circle module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.cnf">advalg.cnf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.dnf">advalg.dnf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.graph">advalg.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.graph_helpers">advalg.graph_helpers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.helpers">advalg.helpers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.lp">advalg.lp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.prim">advalg.prim module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.sat_solver">advalg.sat_solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.tests3">advalg.tests3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.tests4">advalg.tests4 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.tests5">advalg.tests5 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.tests6">advalg.tests6 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.tests8">advalg.tests8 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg.tests_circle">advalg.tests_circle module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-advalg">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -153,8 +155,6 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">advalg</a> &raquo;</li>
-        
       <li>advalg package</li>
     
     
@@ -178,6 +178,146 @@
 <h1>advalg package<a class="headerlink" href="#advalg-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-advalg.brute_force">
+<span id="advalg-brute-force-module"></span><h2>advalg.brute_force module<a class="headerlink" href="#module-advalg.brute_force" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="advalg.brute_force.brute_cheapest_hamcycle">
+<code class="descclassname">advalg.brute_force.</code><code class="descname">brute_cheapest_hamcycle</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#advalg.brute_force.brute_cheapest_hamcycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the weight of the cheapest hamiltonian cycle in g.
+Returns inf if no hamiltonian cycle exists.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.brute_force.brute_dnf_count">
+<code class="descclassname">advalg.brute_force.</code><code class="descname">brute_dnf_count</code><span class="sig-paren">(</span><em>dnf: advalg.dnf.DNF</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#advalg.brute_force.brute_dnf_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses brute force to count number of satisfying assignments in the given dnf</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.brute_force.brute_hamcycles">
+<code class="descclassname">advalg.brute_force.</code><code class="descname">brute_hamcycles</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.brute_force.brute_hamcycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs all hamiltonian cycles of g using brute force</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.brute_force.brute_isets">
+<code class="descclassname">advalg.brute_force.</code><code class="descname">brute_isets</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph</em><span class="sig-paren">)</span> &#x2192; List[Tuple[int]]<a class="headerlink" href="#advalg.brute_force.brute_isets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses brute force to construct all independent sets of g</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.brute_force.brute_perf_matchings">
+<code class="descclassname">advalg.brute_force.</code><code class="descname">brute_perf_matchings</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#advalg.brute_force.brute_perf_matchings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the number of perfect matchings in g using brute force.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.brute_force.brute_vc">
+<code class="descclassname">advalg.brute_force.</code><code class="descname">brute_vc</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#advalg.brute_force.brute_vc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the size of the minimum vertex cover of g using brute force</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-advalg.circle">
+<span id="advalg-circle-module"></span><h2>advalg.circle module<a class="headerlink" href="#module-advalg.circle" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="advalg.circle.Circle">
+<em class="property">class </em><code class="descclassname">advalg.circle.</code><code class="descname">Circle</code><span class="sig-paren">(</span><em>x: float</em>, <em>y: float</em>, <em>radius: float</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.circle.Circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="advalg.circle.Circle.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x: float</em>, <em>y: float</em>, <em>radius: float</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.circle.Circle.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a circle at position (x,y) with the given radius and color</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.circle.Circle.area">
+<code class="descname">area</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#advalg.circle.Circle.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the area of the circle</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.circle.Circle.inside">
+<code class="descname">inside</code><span class="sig-paren">(</span><em>x: float</em>, <em>y: float</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.circle.Circle.inside" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the point (x,y) inside the circle</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-advalg.cnf">
+<span id="advalg-cnf-module"></span><h2>advalg.cnf module<a class="headerlink" href="#module-advalg.cnf" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="advalg.cnf.CNF">
+<em class="property">class </em><code class="descclassname">advalg.cnf.</code><code class="descname">CNF</code><span class="sig-paren">(</span><em>var_count</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.cnf.CNF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a logical formula in Conjunctive Normal Form</p>
+<dl class="method">
+<dt id="advalg.cnf.CNF.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>var_count</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.cnf.CNF.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a DNF with variables x1,x2,…,x(var_count)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNF.add_clause">
+<code class="descname">add_clause</code><span class="sig-paren">(</span><em>literals: Iterable[int]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#advalg.cnf.CNF.add_clause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a clause with the given literals.
+Positive integers correspond to variables and negative integers correspond to negated variables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNF.clause">
+<code class="descname">clause</code><span class="sig-paren">(</span><em>i: int</em><span class="sig-paren">)</span> &#x2192; advalg.cnf.CNFClause<a class="headerlink" href="#advalg.cnf.CNF.clause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the clause with index i</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNF.clause_count">
+<code class="descname">clause_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#advalg.cnf.CNF.clause_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of clauses in the formula</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNF.clauses">
+<code class="descname">clauses</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List[advalg.cnf.CNFClause]<a class="headerlink" href="#advalg.cnf.CNF.clauses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list with all clauses in the formula</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNF.is_satisfied">
+<code class="descname">is_satisfied</code><span class="sig-paren">(</span><em>assignment: Dict[int, bool]</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.cnf.CNF.is_satisfied" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is this DNF formula satisfied by the given assignment?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNF.var_count">
+<code class="descname">var_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#advalg.cnf.CNF.var_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of variables in the formula</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.cnf.CNFClause">
+<em class="property">class </em><code class="descclassname">advalg.cnf.</code><code class="descname">CNFClause</code><span class="sig-paren">(</span><em>literals: Iterable[int]</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.cnf.CNFClause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a clause in a boolean formula in CNF</p>
+<dl class="method">
+<dt id="advalg.cnf.CNFClause.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>literals: Iterable[int]</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.cnf.CNFClause.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a clause with the given literals.
+Positive integers correspond to variables and negative integers correspond to negated variables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.cnf.CNFClause.is_satisfied">
+<code class="descname">is_satisfied</code><span class="sig-paren">(</span><em>assignment: Dict[int, bool]</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.cnf.CNFClause.is_satisfied" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the clause satisfied by the given assignment?</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-advalg.dnf">
 <span id="advalg-dnf-module"></span><h2>advalg.dnf module<a class="headerlink" href="#module-advalg.dnf" title="Permalink to this headline">¶</a></h2>
@@ -264,7 +404,8 @@ Positive integers correspond to variables and negative integers correspond to ne
 <dt id="advalg.graph.Edge">
 <em class="property">class </em><code class="descclassname">advalg.graph.</code><code class="descname">Edge</code><span class="sig-paren">(</span><em>u: int</em>, <em>v: int</em>, <em>w: float</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.graph.Edge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Represents a weighted undirected edge</p>
+<p>Represents a weighted undirected edge.
+Has member variables u, v, w for the endpoints and weight respectively.</p>
 <dl class="method">
 <dt id="advalg.graph.Edge.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>u: int</em>, <em>v: int</em>, <em>w: float</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.graph.Edge.__init__" title="Permalink to this definition">¶</a></dt>
@@ -306,7 +447,7 @@ Loops are permitted but parallel edges are not.</p>
 
 <dl class="method">
 <dt id="advalg.graph.Graph.adj_matrix">
-<code class="descname">adj_matrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; &lt;Mock name='mock.ndarray' id='140276677702560'&gt;<a class="headerlink" href="#advalg.graph.Graph.adj_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">adj_matrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; &lt;Mock name='mock.ndarray' id='139848235656912'&gt;<a class="headerlink" href="#advalg.graph.Graph.adj_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the adjacency matrix of the graph</p>
 </dd></dl>
 
@@ -405,6 +546,77 @@ Each remaining line contains an edge u v.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-advalg.graph_helpers">
+<span id="advalg-graph-helpers-module"></span><h2>advalg.graph_helpers module<a class="headerlink" href="#module-advalg.graph_helpers" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="advalg.graph_helpers.is_hamcycle">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">is_hamcycle</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph, tour: List[int]</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.graph_helpers.is_hamcycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the given tour a hamiltonian cycle in g?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.is_iset">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">is_iset</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph, s: Iterable[int]</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.graph_helpers.is_iset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is s an independent set of graph g?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.is_perf_matching">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">is_perf_matching</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph, m: List[advalg.graph.Edge]</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.graph_helpers.is_perf_matching" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is m a perfect matching in the graph g?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.is_vc">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">is_vc</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph, vc: Iterable[int]</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.graph_helpers.is_vc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is vc a vertex cover of the graph g?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.make_clique">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">make_clique</code><span class="sig-paren">(</span><em>n: int</em><span class="sig-paren">)</span> &#x2192; advalg.graph.Graph<a class="headerlink" href="#advalg.graph_helpers.make_clique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a clique with n vertices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.make_cycle">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">make_cycle</code><span class="sig-paren">(</span><em>n: int</em><span class="sig-paren">)</span> &#x2192; advalg.graph.Graph<a class="headerlink" href="#advalg.graph_helpers.make_cycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs of cycle with n vertices.
+A cycle with 0 vertices is the empty graph.
+A cycle with 1 vertex is a loop.
+A cycle with 2 vertices is not permitted because of parallel edges.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.make_grid">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">make_grid</code><span class="sig-paren">(</span><em>rows: int</em>, <em>cols: int</em><span class="sig-paren">)</span> &#x2192; advalg.graph.Graph<a class="headerlink" href="#advalg.graph_helpers.make_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a grid graph with the given rows and columns</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.make_path">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">make_path</code><span class="sig-paren">(</span><em>n: int</em><span class="sig-paren">)</span> &#x2192; advalg.graph.Graph<a class="headerlink" href="#advalg.graph_helpers.make_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a path with n vertices (n-1 edges)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.make_random">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">make_random</code><span class="sig-paren">(</span><em>n: int</em>, <em>p: float</em><span class="sig-paren">)</span> &#x2192; advalg.graph.Graph<a class="headerlink" href="#advalg.graph_helpers.make_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a random graph where each edge is sampled with probability p</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.random">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">random</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; x in the interval [0, 1).<a class="headerlink" href="#advalg.graph_helpers.random" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="advalg.graph_helpers.tour_cost">
+<code class="descclassname">advalg.graph_helpers.</code><code class="descname">tour_cost</code><span class="sig-paren">(</span><em>g: advalg.graph.Graph, tour: List[int]</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#advalg.graph_helpers.tour_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total cost of the given tour in g.</p>
+</dd></dl>
+
+</div>
 <div class="section" id="module-advalg.helpers">
 <span id="advalg-helpers-module"></span><h2>advalg.helpers module<a class="headerlink" href="#module-advalg.helpers" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -428,7 +640,8 @@ Each remaining line contains an edge u v.</p>
 <dl class="function">
 <dt id="advalg.helpers.n_tuples">
 <code class="descclassname">advalg.helpers.</code><code class="descname">n_tuples</code><span class="sig-paren">(</span><em>items: Iterable[T_co], count: int</em><span class="sig-paren">)</span> &#x2192; Iterator[Tuple]<a class="headerlink" href="#advalg.helpers.n_tuples" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns all count-tuples of of items as an iterator of tuples</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="advalg.helpers.permutations">
@@ -443,18 +656,188 @@ Each remaining line contains an edge u v.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-advalg.map_visualizer">
-<span id="advalg-map-visualizer-module"></span><h2>advalg.map_visualizer module<a class="headerlink" href="#module-advalg.map_visualizer" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="advalg.map_visualizer.plot_tour">
-<code class="descclassname">advalg.map_visualizer.</code><code class="descname">plot_tour</code><span class="sig-paren">(</span><em>tour: List[int], title: str</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.map_visualizer.plot_tour" title="Permalink to this definition">¶</a></dt>
-<dd><p>Visualizes the given tour of danish cities on a map.
-The given title is shown on top of the map.</p>
+<div class="section" id="module-advalg.lp">
+<span id="advalg-lp-module"></span><h2>advalg.lp module<a class="headerlink" href="#module-advalg.lp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="advalg.lp.ConstraintGE">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">ConstraintGE</code><span class="sig-paren">(</span><em>left: advalg.lp.LPEntity</em>, <em>right: float</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.ConstraintGE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="advalg.lp.ConstraintGE.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>left: advalg.lp.LPEntity</em>, <em>right: float</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.ConstraintGE.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="advalg-matrix-module">
-<h2>advalg.matrix module<a class="headerlink" href="#advalg-matrix-module" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="advalg.lp.ConstraintGE.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.lp.ConstraintGE.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.ConstraintLE">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">ConstraintLE</code><span class="sig-paren">(</span><em>left: advalg.lp.LPEntity</em>, <em>right: float</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.ConstraintLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="advalg.lp.ConstraintLE.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>left: advalg.lp.LPEntity</em>, <em>right: float</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.ConstraintLE.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.ConstraintLE.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.lp.ConstraintLE.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.LP">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">LP</code><span class="sig-paren">(</span><em>variables: List[advalg.lp.Var], objective</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a Linear Programming problem</p>
+<dl class="method">
+<dt id="advalg.lp.LP.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>variables: List[advalg.lp.Var], objective</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LP.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a LP problem with the given variables and objective function (Minimize or Maximize)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.LP.add_constraint">
+<code class="descname">add_constraint</code><span class="sig-paren">(</span><em>constraint</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#advalg.lp.LP.add_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a constrant to this problem</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.LP.parse_output">
+<code class="descname">parse_output</code><span class="sig-paren">(</span><em>output: str</em><span class="sig-paren">)</span> &#x2192; advalg.lp.LPResult<a class="headerlink" href="#advalg.lp.LP.parse_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.LP.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; advalg.lp.LPResult<a class="headerlink" href="#advalg.lp.LP.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to solve the LP problem.
+Returns None if the problem is infeasible.
+Returns an LPResult if problem is feasible.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.LP.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LP.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.LPEntity">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">LPEntity</code><a class="headerlink" href="#advalg.lp.LPEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.LPResult">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">LPResult</code><span class="sig-paren">(</span><em>obj_value: float, assignment: Dict[int, float]</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LPResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a solution to a Linear Programming Problem.
+Has member variables obj_value (float) and assignment (Dict[int, float])</p>
+<dl class="method">
+<dt id="advalg.lp.LPResult.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>obj_value: float, assignment: Dict[int, float]</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LPResult.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.LinearComb">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">LinearComb</code><span class="sig-paren">(</span><em>ts: List[Tuple[float</em>, <em>int]] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LinearComb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#advalg.lp.LPEntity" title="advalg.lp.LPEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">advalg.lp.LPEntity</span></code></a></p>
+<dl class="method">
+<dt id="advalg.lp.LinearComb.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ts: List[Tuple[float</em>, <em>int]] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.LinearComb.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="advalg.lp.LinearComb.sum">
+<em class="property">static </em><code class="descname">sum</code><span class="sig-paren">(</span><em>vars: List[Var]</em><span class="sig-paren">)</span> &#x2192; advalg.lp.LinearComb<a class="headerlink" href="#advalg.lp.LinearComb.sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.LinearComb.terms">
+<code class="descname">terms</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List[Tuple[float, int]]<a class="headerlink" href="#advalg.lp.LinearComb.terms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.LinearComb.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.lp.LinearComb.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.Maximize">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">Maximize</code><span class="sig-paren">(</span><em>lin_func: advalg.lp.LPEntity</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.Maximize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="advalg.lp.Maximize.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>lin_func: advalg.lp.LPEntity</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.Maximize.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.Maximize.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.lp.Maximize.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.Minimize">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">Minimize</code><span class="sig-paren">(</span><em>lin_func: advalg.lp.LPEntity</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.Minimize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="advalg.lp.Minimize.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>lin_func: advalg.lp.LPEntity</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.Minimize.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.Minimize.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.lp.Minimize.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="advalg.lp.Var">
+<em class="property">class </em><code class="descclassname">advalg.lp.</code><code class="descname">Var</code><span class="sig-paren">(</span><em>x: int</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.Var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#advalg.lp.LPEntity" title="advalg.lp.LPEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">advalg.lp.LPEntity</span></code></a></p>
+<dl class="method">
+<dt id="advalg.lp.Var.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x: int</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.lp.Var.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.Var.terms">
+<code class="descname">terms</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List[Tuple[float, int]]<a class="headerlink" href="#advalg.lp.Var.terms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="advalg.lp.Var.to_lp">
+<code class="descname">to_lp</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.lp.Var.to_lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.lp.variables">
+<code class="descclassname">advalg.lp.</code><code class="descname">variables</code><span class="sig-paren">(</span><em>n: int</em><span class="sig-paren">)</span> &#x2192; List[advalg.lp.Var]<a class="headerlink" href="#advalg.lp.variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of variables [x0, x1, … x_n-1]</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-advalg.prim">
 <span id="advalg-prim-module"></span><h2>advalg.prim module<a class="headerlink" href="#module-advalg.prim" title="Permalink to this headline">¶</a></h2>
@@ -463,6 +846,44 @@ The given title is shown on top of the map.</p>
 <code class="descclassname">advalg.prim.</code><code class="descname">mst</code><span class="sig-paren">(</span><em>graph: advalg.graph.Graph</em><span class="sig-paren">)</span> &#x2192; advalg.graph.Graph<a class="headerlink" href="#advalg.prim.mst" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a minimum spanning tree of the given graph using Prim’s algorithm.
 The MST is returned as a graph g.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-advalg.sat_solver">
+<span id="advalg-sat-solver-module"></span><h2>advalg.sat_solver module<a class="headerlink" href="#module-advalg.sat_solver" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="advalg.sat_solver.is_satisfiable">
+<code class="descclassname">advalg.sat_solver.</code><code class="descname">is_satisfiable</code><span class="sig-paren">(</span><em>cnf: advalg.cnf.CNF</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#advalg.sat_solver.is_satisfiable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the given CNF formula satisfiable?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.sat_solver.parse_clause">
+<code class="descclassname">advalg.sat_solver.</code><code class="descname">parse_clause</code><span class="sig-paren">(</span><em>string: str</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.sat_solver.parse_clause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a CNF clause</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.sat_solver.parse_cnf">
+<code class="descclassname">advalg.sat_solver.</code><code class="descname">parse_cnf</code><span class="sig-paren">(</span><em>string: str</em><span class="sig-paren">)</span> &#x2192; advalg.cnf.CNF<a class="headerlink" href="#advalg.sat_solver.parse_cnf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a CNF object from the given string representation</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.sat_solver.parse_output">
+<code class="descclassname">advalg.sat_solver.</code><code class="descname">parse_output</code><span class="sig-paren">(</span><em>out_file: str</em><span class="sig-paren">)</span> &#x2192; Tuple[bool, Dict[int, bool]]<a class="headerlink" href="#advalg.sat_solver.parse_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="advalg.sat_solver.solve">
+<code class="descclassname">advalg.sat_solver.</code><code class="descname">solve</code><span class="sig-paren">(</span><em>cnf: advalg.cnf.CNF</em><span class="sig-paren">)</span> &#x2192; Dict[int, int]<a class="headerlink" href="#advalg.sat_solver.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a solution to cnf if it is satisfiable, otherwise None</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.sat_solver.to_cnf_format">
+<code class="descclassname">advalg.sat_solver.</code><code class="descname">to_cnf_format</code><span class="sig-paren">(</span><em>cnf: advalg.cnf.CNF</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#advalg.sat_solver.to_cnf_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a DIMACS CNF string representation of cnf</p>
 </dd></dl>
 
 </div>
@@ -530,9 +951,20 @@ Plots the output of your implementation and compares with actual result.</p>
 <div class="section" id="module-advalg.tests6">
 <span id="advalg-tests6-module"></span><h2>advalg.tests6 module<a class="headerlink" href="#module-advalg.tests6" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="advalg.tests6.test_vc">
-<code class="descclassname">advalg.tests6.</code><code class="descname">test_vc</code><span class="sig-paren">(</span><em>vc_fpt: Callable[[advalg.graph.Graph, int], bool]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#advalg.tests6.test_vc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tests the implementation of the FPT algorithm for vertex cover</p>
+<dt id="advalg.tests6.run_tests">
+<code class="descclassname">advalg.tests6.</code><code class="descname">run_tests</code><span class="sig-paren">(</span><em>vc</em>, <em>cases</em><span class="sig-paren">)</span><a class="headerlink" href="#advalg.tests6.run_tests" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="advalg.tests6.test_fpt">
+<code class="descclassname">advalg.tests6.</code><code class="descname">test_fpt</code><span class="sig-paren">(</span><em>vc: Callable[[advalg.graph.Graph, int], bool]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#advalg.tests6.test_fpt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the FPT algorithm for vertex cover</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="advalg.tests6.test_sat">
+<code class="descclassname">advalg.tests6.</code><code class="descname">test_sat</code><span class="sig-paren">(</span><em>vc: Callable[[advalg.graph.Graph, int], bool]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#advalg.tests6.test_sat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the reduction from vertex cover to SAT</p>
 </dd></dl>
 
 </div>
@@ -551,6 +983,15 @@ Plots the output of your implementation and compares with actual result.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-advalg.tests_circle">
+<span id="advalg-tests-circle-module"></span><h2>advalg.tests_circle module<a class="headerlink" href="#module-advalg.tests_circle" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="advalg.tests_circle.test_circle_sampler">
+<code class="descclassname">advalg.tests_circle.</code><code class="descname">test_circle_sampler</code><span class="sig-paren">(</span><em>sampler</em>, <em>samples: int = 1000</em>, <em>delay: int = 50</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#advalg.tests_circle.test_circle_sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests your implementation of the CircleSampler class</p>
+</dd></dl>
+
+</div>
 <div class="section" id="module-advalg">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-advalg" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -562,7 +1003,7 @@ Plots the output of your implementation and compares with actual result.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="modules.html" class="btn btn-neutral float-left" title="advalg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the documentation for Advanced Algorithms!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

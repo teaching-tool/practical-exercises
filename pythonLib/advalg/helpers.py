@@ -17,18 +17,18 @@ def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
 
 def combinations(items: Iterable, count: int) -> Iterator[Tuple]:
     """Returns all count-combinations of items as an iterator of tuples"""
+    assert(count >= 0)
     l = list(items)
-    assert(0 <= count <= len(l))
     return itertools.combinations(l, count)
 
 def permutations(items: Iterable, count: int) -> Iterator[Tuple]:
     """Returns all count-permutations of items as an iterator of tuples"""
+    assert(count >= 0)
     l = list(items)
-    assert(0 <= count <= len(l))
     return itertools.permutations(l, count)
 
 def n_tuples(items: Iterable, count: int) -> Iterator[Tuple]:
-    l = list(items)
+    """Returns all count-tuples of of items as an iterator of tuples"""
     assert(0 <= count)
     return itertools.product(items, repeat=count)
 
