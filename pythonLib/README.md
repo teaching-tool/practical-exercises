@@ -29,4 +29,4 @@ Numpy and Matplotlib are python packages and should be installed automatically b
 `pip3 install numpy matplotlib`
 
 ## Documentation
-The documentation for the package can be found in the docs folder. Additionally, the files `sat_example.py` and `lp_examples.py` contain examples for the SAT-solver and LP-solver respectively.
+The documentation for the package can be found in the docs folder. Additionally, the files `sat_example.py` and `lp_example.py` contain examples for the SAT-solver and LP-solver respectively.
